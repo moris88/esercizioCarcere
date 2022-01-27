@@ -2,8 +2,7 @@
     "name": "templateproject",
     "version": "1.0.0",
     "scripts": {
-        "compile": "prettier --write . && tsc && browserify ./temp/main.js > ./public/bundle.js -t babelify",
-        "watch": "tsc -w"
+        "compile": "prettier --write . && tsc && browserify ./temp/main.js > ./public/bundle.js -t babelify"
     },
     "repository": {
         "type": "git",
