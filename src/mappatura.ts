@@ -5,7 +5,7 @@ let guardia1: Guardia = {
     cognome: 'Tolomeo',
     eta: 34,
     tipo: 'guardia',
-    data_assunzione: new Date('17-05-2020'),
+    data_assunzione: new Date('17/5/2020'),
     descrizione: 'agente',
 }
 
@@ -14,7 +14,7 @@ let guardia2: Guardia = {
     cognome: 'Sardo',
     eta: 32,
     tipo: 'guardia',
-    data_assunzione: new Date('01-01-2018'),
+    data_assunzione: new Date('1/1/2018'),
     descrizione: 'agente',
 }
 
@@ -23,8 +23,8 @@ let detenuto1: Detenuto = {
     cognome: 'Totti',
     eta: 45,
     tipo: 'detenuto',
-    data_carcerazione: new Date('25-10-2018'),
-    data_scarcerazione: new Date('25-10-2038'),
+    data_carcerazione: new Date('25/10/2018'),
+    data_scarcerazione: new Date('25/10/2038'),
     pena: 20,
     crimine: 'truffa ai danni dello stato',
     evaso: false,
@@ -36,8 +36,8 @@ let detenuto2: Detenuto = {
     cognome: 'Pippo',
     eta: 25,
     tipo: 'detenuto',
-    data_carcerazione: new Date('05-11-2019'),
-    data_scarcerazione: new Date('05-11-2069'),
+    data_carcerazione: new Date('5/11/2019'),
+    data_scarcerazione: new Date('5/11/2069'),
     pena: 50,
     crimine: 'omidicio',
     evaso: true,
