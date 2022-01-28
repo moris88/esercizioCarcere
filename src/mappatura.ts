@@ -59,9 +59,9 @@ export const addUtente = (utente: Detenuto | Guardia) => {
 
 export const removeUtente = (pos: number, tipo: Type) => {
     if (tipo === 'detenuto') {
-        fascicolo.detenuti.splice(pos-1, 1)
+        fascicolo.detenuti.splice(pos - 1, 1)
     } else {
-        fascicolo.guardie.splice(pos-1, 1)
+        fascicolo.guardie.splice(pos - 1, 1)
     }
 }
 
