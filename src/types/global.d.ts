@@ -5,7 +5,7 @@ export interface Guardia {
     cognome: string
     eta?: number
     tipo: Type
-    data_assunzione?: Date
+    data_assunzione: Date
     descrizione?: string
 }
 

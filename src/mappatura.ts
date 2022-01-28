@@ -5,7 +5,7 @@ let guardia1: Guardia = {
     cognome: 'Tolomeo',
     eta: 34,
     tipo: 'guardia',
-    data_assunzione: new Date('17/5/2020'),
+    data_assunzione: new Date('2020/5/17'),
     descrizione: 'agente',
 }
 
@@ -14,7 +14,7 @@ let guardia2: Guardia = {
     cognome: 'Sardo',
     eta: 32,
     tipo: 'guardia',
-    data_assunzione: new Date('1/1/2018'),
+    data_assunzione: new Date('2018/1/1'),
     descrizione: 'agente',
 }
 
@@ -67,8 +67,8 @@ export const removeUtente = (pos: number, tipo: Type) => {
 
 export const getUtenti = (tipo: Type) => {
     if (tipo === 'detenuto') {
-        return fascicolo.detenuti
+        return fascicolo.detenuti as Detenuto[]
     } else {
-        return fascicolo.guardie
+        return fascicolo.guardie as Guardia[]
     }
 }
