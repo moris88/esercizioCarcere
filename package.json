@@ -2,7 +2,11 @@
     "name": "templateproject",
     "version": "1.0.0",
     "scripts": {
-        "compile": "prettier --write . && tsc && browserify ./temp/main.js > ./public/bundle.js -t babelify"
+        "prettier": "prettier --write .",
+        "compile": "tsc",
+        "build": "prettier --write . && tsc && browserify ./temp/main.js > ./public/bundle.js -t babelify",
+        "dev": "watchify ./temp/main.js -o ./public/bundle.js -t babelify",
+        "watch": "tsc -w"
     },
     "repository": {
         "type": "git",
@@ -14,14 +18,13 @@
         "url": "https://github.com/moris88/templateProject/issues"
     },
     "homepage": "https://github.com/moris88/templateProject#readme",
-    "dependencies": {
-        "browserify": "^17.0.0"
-    },
     "devDependencies": {
         "@babel/core": "^7.16.10",
         "@babel/preset-env": "^7.16.10",
         "babelify": "^10.0.0",
+        "browserify": "^17.0.0",
         "prettier": "^2.5.1",
-        "typescript": "^4.5.4"
+        "typescript": "^4.5.4",
+        "watchify": "^4.0.0"
     }
 }
