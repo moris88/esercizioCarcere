@@ -3,6 +3,8 @@ package.json
 package-lock.json
 README.md
 /temp
+/dev
+/build
 tsconfig.json
 .gitignore
 .prettierrc.json
