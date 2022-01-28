@@ -82,7 +82,7 @@ const dati_detenuto = () => {
     </table>`
 }
 
-const guardia = () => {
+export const guardia = () => {
     divContenitore1.innerHTML = `
     <table class="table">
     <thead>
@@ -102,7 +102,7 @@ const guardia = () => {
     `
 }
 
-const detenuto = () => {
+export const detenuto = () => {
     divContenitore1.innerHTML = `
         <table class="table">
         <thead>
