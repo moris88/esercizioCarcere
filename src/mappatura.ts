@@ -1,6 +1,10 @@
 import { Detenuto, Fascicolo, Guardia, Type } from './types/global.d'
 
+export let nG = 0
+export let nD = 0
+
 let guardia1: Guardia = {
+    id: 1,
     nome: 'Maurizio',
     cognome: 'Tolomeo',
     eta: 34,
@@ -9,7 +13,10 @@ let guardia1: Guardia = {
     descrizione: 'agente',
 }
 
+nG++
+
 let guardia2: Guardia = {
+    id: 2,
     nome: 'Giacomo',
     cognome: 'Sardo',
     eta: 32,
@@ -18,31 +25,39 @@ let guardia2: Guardia = {
     descrizione: 'agente',
 }
 
+nG++
+
 let detenuto1: Detenuto = {
+    id: 1,
     nome: 'Francesco',
     cognome: 'Totti',
     eta: 45,
     tipo: 'detenuto',
-    data_carcerazione: new Date('25/10/2018'),
-    data_scarcerazione: new Date('25/10/2038'),
+    data_carcerazione: new Date('2018/10/25'),
+    data_scarcerazione: new Date('2038/10/25'),
     pena: 20,
     crimine: 'truffa ai danni dello stato',
     evaso: false,
     deceduto: false,
 }
 
+nD++
+
 let detenuto2: Detenuto = {
+    id: 2,
     nome: 'Giacomo',
     cognome: 'Pippo',
     eta: 25,
     tipo: 'detenuto',
-    data_carcerazione: new Date('5/11/2019'),
-    data_scarcerazione: new Date('5/11/2069'),
+    data_carcerazione: new Date('2019/11/5'),
+    data_scarcerazione: new Date('2069/11/5'),
     pena: 50,
     crimine: 'omidicio',
     evaso: true,
     deceduto: false,
 }
+
+nD++
 
 let fascicolo: Fascicolo = {
     guardie: [guardia1, guardia2],
