@@ -87,6 +87,7 @@ export const guardia = () => {
     <table class="table">
     <thead>
     <tr>
+        <th scope="col">ID</th>
         <th scope="col">Nome</th>
         <th scope="col">Cognome</th>
         <th scope="col">Età</th>
