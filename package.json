@@ -4,7 +4,7 @@
     "scripts": {
         "prettier": "prettier --write .",
         "compile": "tsc",
-        "build": "prettier --write . && tsc && browserify ./temp/main.js > ./public/bundle.js -t babelify",
+        "build": "tsc && browserify ./temp/main.js > ./public/bundle.js -t babelify",
         "dev": "watchify ./temp/main.js -o ./public/bundle.js -t babelify",
         "watch": "tsc -w"
     },
