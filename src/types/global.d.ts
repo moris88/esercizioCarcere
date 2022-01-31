@@ -1,6 +1,7 @@
 export type Type = 'detenuto' | 'guardia'
 
 export interface Guardia {
+    id: number
     nome: string
     cognome: string
     eta?: number
@@ -10,6 +11,7 @@ export interface Guardia {
 }
 
 export interface Detenuto {
+    id: number
     nome: string
     cognome: string
     eta?: number
