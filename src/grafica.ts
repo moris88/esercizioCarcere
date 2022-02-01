@@ -59,6 +59,7 @@ const dati_detenuto = () => {
         <tr>
             <th>Evaso</th>
             <th>Deceduto</th>
+            <th></th>
         </tr>
         <tr>
             <td>
@@ -129,3 +130,14 @@ export const detenuto = () => {
 export const init = () => {
     guardia()
 }
+
+
+function creazioneTabella(listaCampi: Campo[]){
+
+}
+
+function inserisciTupla(listaRecord: Record[]){
+
+}
+
+function inserisciP(testo: string)
