@@ -37,30 +37,42 @@
                 
                 </div>
                 <hr>
+                <div class="row">
+                  <div class="col"><h6>Inserisci ID dell'utente che vuoi eliminare:</h6></div>
+                  <div class="col">
+                    <select name="id" id="id">
+                      
+                   </select>
+                  </div>
+                  <div class="col">
+                    <button type="button" id="rimuovi" class="btn btn-danger">Rimuovi</button>
+                  </div>
+                </div>
+                <hr>
                 <div class="container2">
                     <h1>Nuovo Utente</h1>
                     <table class="table">
                         <tbody>
                           <tr>
+                            <td></td>
+                            <th style="text-align: left;">
+                              Chi vuoi inserire: 
+                                <select name="tipo" id="tipo">
+                                    <option value="scelta" selected>SELEZIONA...</option>
+                                     <option value="g">GUARDIA</option>
+                                     <option value="d">DETENUTO</option>
+                                 </select>
+                             </th>
+                             <td></td>
+                          </tr>
+                          <tr>
                             <th>Nome</th>
                             <th>Cognome</th>
+                            <th>Età</th>
                           </tr>
                           <tr>
                             <td><input type="text" aria-label="Nome" class="form-control" id="nome"></td>
                             <td><input type="text" aria-label="Cognome" class="form-control" id="cognome"></td>
-                          </tr>
-                          <tr>
-                            <th>Mansione</th>
-                            <th>Età</th>
-                          </tr>
-                          <tr>
-                           <td>
-                               <select name="tipo" id="tipo">
-                                   <option value="scelta" selected>SELEZIONA...</option>
-                                    <option value="g">GUARDIA</option>
-                                    <option value="d">DETENUTO</option>
-                                </select>
-                            </td>
                             <td><input type="number" id="eta"></td>
                           </tr>
                         </tbody>
