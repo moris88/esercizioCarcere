@@ -1,38 +1,17 @@
 import { Detenuto, Guardia, Type } from './types/global.d'
 import { getUtenti } from './mappatura'
-import { btn, rimuovi, selModalita, selValore } from './dichiarazioni'
+import { btn, btnRemove, id, selModalita, selValore } from './dichiarazioni'
 import { cambio, detenuto, guardia, init } from './grafica'
-import { salva } from './salvataggio'
-import { remove } from './rimozione'
+import { rimuovi, salva } from './database'
 
 init()
 
-
 window.addEventListener('load', function () {
-    const rigo = window.document.getElementById(
-        'rigo'
-    ) as HTMLTableSectionElement
-    rigo.innerHTML = ''
-    const guardie = getUtenti('guardia') as Guardia[]
-    for (const guardia of guardie) {
-        rigo.innerHTML += `
-            <tr>
-                <td>${guardia.id}</td>
-                <td>${guardia.nome}</td>
-                <td>${guardia.cognome}</td>
-                <td>${guardia.eta}</td>
-                <td>${guardia.tipo}</td>
-                <td>${guardia.data_assunzione?.getDate()}/${
-            guardia.data_assunzione?.getMonth() + 1
-        }/${guardia.data_assunzione?.getFullYear()}</td>
-                <td>${guardia.descrizione}</td>
-                <td><button id="rimuovi" type="button" class="btn btn-outline-danger")">X</button></td>
-            </tr>
-           `
-    }
+    visualizzazione();
 })
 
 export function visualizzazione() {
+    id.innerHTML = ``
     let tipo: Type = selModalita.value as Type
     if (tipo === 'detenuto') {
         detenuto()
@@ -60,8 +39,10 @@ export function visualizzazione() {
                     <td>${detenuto.crimine}</td>
                     <td>${detenuto.evaso}</td>
                     <td>${detenuto.deceduto}</td>
-                    <td><button id="rimuovi" type="button" class="btn btn-outline-danger")">X</button></td>
                 </tr>`
+                id.innerHTML += `
+                    <option value="${detenuto.id}">${detenuto.id}</option>
+                `
         }
     } else {
         guardia()
@@ -78,19 +59,22 @@ export function visualizzazione() {
                 <td>${guardia.cognome}</td>
                 <td>${guardia.eta}</td>
                 <td>${guardia.tipo}</td>
-                <td>${guardia.data_assunzione?.getDate()}/${guardia.data_assunzione?.getMonth()}/${guardia.data_assunzione?.getFullYear()}</td>
+                <td>${guardia.data_assunzione?.getDate()}/${guardia.data_assunzione?.getMonth()+1}/${guardia.data_assunzione?.getFullYear()}</td>
                 <td>${guardia.descrizione}</td>
-                <td><button id="rimuovi" type="button" class="btn btn-outline-danger")">X</button></td>
             </tr>
            `
+           id.innerHTML += `
+                    <option value="${guardia.id}">${guardia.id}</option>
+                `
         }
     }
-}
 
+}
 
 selValore.addEventListener('change', cambio)
 selModalita.addEventListener('change', visualizzazione)
 btn.addEventListener('click', salva)
-rimuovi.addEventListener('click', remove)
+btnRemove.addEventListener('click', rimuovi)
+
 
 
