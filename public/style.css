@@ -2,3 +2,7 @@
 .margin{
     padding: 2% 2% 2% 2%;
 }
+
+.container1, .container2, .container3, .container4{
+    text-align: center;
+}
