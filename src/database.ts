@@ -3,6 +3,7 @@ import { detenuto, guardia } from './grafica'
 import { visualizzazione } from './main'
 import { nG, nD, addUtente, removeUtente } from './mappatura'
 import { pulizia } from './pulire'
+import { decesso, evasione, numero } from './statistiche'
 import { Detenuto, Guardia, Type } from './types/global'
 
 export function salva() {
@@ -71,8 +72,15 @@ export function rimuovi(){
     if(tipo==='detenuto'){
       removeUtente(pos, 'detenuto')
       visualizzazione()
+      numero()
+      evasione()
+      decesso()
     }else{
       removeUtente(pos, 'guardia')
       visualizzazione()
+      numero()
+      evasione()
+      decesso()
     }
   }
+
