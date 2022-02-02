@@ -8,7 +8,7 @@ import { decesso, evasione, numero } from './statistiche'
 init()
 
 window.addEventListener('load', function () {
-    visualizzazione();
+    visualizzazione()
 })
 
 export function visualizzazione() {
@@ -21,9 +21,11 @@ export function visualizzazione() {
         ) as HTMLTableSectionElement
         rigo.innerHTML = ''
         const detenuti = getUtenti('detenuto') as Detenuto[]
-        let i = 0
-        for (const detenuto of detenuti) {
-            rigo.innerHTML += `
+        if (detenuti.length === 0) {
+            rigo.innerHTML = `<tr>Non ci sono elementi da visualizzare</tr>`
+        } else {
+            for (const detenuto of detenuti) {
+                rigo.innerHTML += `
                 <tr>
                     <td>${detenuto.id}</td>
                     <td>${detenuto.nome}</td>
@@ -31,11 +33,11 @@ export function visualizzazione() {
                     <td>${detenuto.eta}</td>
                     <td>${detenuto.tipo}</td>
                     <td>${detenuto.data_carcerazione?.getDate()}/${
-                detenuto.data_carcerazione?.getMonth() + 1
-            }/${detenuto.data_carcerazione?.getFullYear()}</td>
+                    detenuto.data_carcerazione?.getMonth() + 1
+                }/${detenuto.data_carcerazione?.getFullYear()}</td>
                     <td>${detenuto.data_scarcerazione?.getDate()}/${
-                detenuto.data_scarcerazione?.getMonth() + 1
-            }/${detenuto.data_scarcerazione?.getFullYear()}</td>
+                    detenuto.data_scarcerazione?.getMonth() + 1
+                }/${detenuto.data_scarcerazione?.getFullYear()}</td>
                     <td>${detenuto.pena}</td>
                     <td>${detenuto.crimine}</td>
                     <td>${detenuto.evaso}</td>
@@ -44,7 +46,7 @@ export function visualizzazione() {
                 id.innerHTML += `
                     <option value="${detenuto.id}">${detenuto.id}</option>
                 `
-                
+            }
         }
     } else {
         guardia()
@@ -53,32 +55,33 @@ export function visualizzazione() {
         ) as HTMLTableSectionElement
         rigo.innerHTML = ''
         const guardie = getUtenti('guardia') as Guardia[]
-        for (const guardia of guardie) {
-            rigo.innerHTML += `
+        if (guardie.length === 0) {
+            rigo.innerHTML = `<tr>Non ci sono elementi da visualizzare</tr>`
+        } else {
+            for (const guardia of guardie) {
+                rigo.innerHTML += `
             <tr>
                 <td>${guardia.id}</td>
                 <td>${guardia.nome}</td>
                 <td>${guardia.cognome}</td>
                 <td>${guardia.eta}</td>
                 <td>${guardia.tipo}</td>
-                <td>${guardia.data_assunzione?.getDate()}/${guardia.data_assunzione?.getMonth()+1}/${guardia.data_assunzione?.getFullYear()}</td>
+                <td>${guardia.data_assunzione?.getDate()}/${
+                    guardia.data_assunzione?.getMonth() + 1
+                }/${guardia.data_assunzione?.getFullYear()}</td>
                 <td>${guardia.descrizione}</td>
             </tr>
            `
-           id.innerHTML += `
+                id.innerHTML += `
                     <option value="${guardia.id}">${guardia.id}</option>
                 `
-            
+            }
         }
     }
     numero()
     evasione()
     decesso()
 }
-
-
-
-
 
 selValore.addEventListener('change', cambio)
 selModalita.addEventListener('change', visualizzazione)
@@ -87,5 +90,3 @@ btnRemove.addEventListener('click', rimuovi)
 window.addEventListener('load', numero)
 window.addEventListener('load', evasione)
 window.addEventListener('load', decesso)
-
-
