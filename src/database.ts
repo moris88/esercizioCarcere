@@ -70,7 +70,9 @@ export function rimuovi(){
     let pos = parseInt(id.value);
     if(tipo==='detenuto'){
       removeUtente(pos, 'detenuto')
+      visualizzazione()
     }else{
       removeUtente(pos, 'guardia')
+      visualizzazione()
     }
   }
