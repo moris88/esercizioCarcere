@@ -1,17 +1,14 @@
-import { dD, eD, nD, nG } from './dichiarazioni'
-import { getUtenti } from './mappatura'
+
+import { dD, eD, nD, nG } from './main'
 import { Detenuto, Guardia } from './types/global'
 
-export const numero = () => {
-    const detenuti = getUtenti('detenuto') as Detenuto[]
-    const guardie = getUtenti('guardia') as Guardia[]
+export const numero = (detenuti: Detenuto[], guardie: Guardia[]) => {
     nG.innerHTML = `${guardie.length}`
     nD.innerHTML = `${detenuti.length}`
 }
 
-export const evasione = () => {
+export const evasione = (detenuti: Detenuto[]) => {
     let numEvaso = 0
-    const detenuti = getUtenti('detenuto') as Detenuto[]
     for (const detenuto of detenuti) {
         if (detenuto.evaso === true) {
             numEvaso = numEvaso + 1
@@ -20,9 +17,8 @@ export const evasione = () => {
     eD.innerHTML = `${numEvaso}`
 }
 
-export const decesso = () => {
+export const decesso = (detenuti: Detenuto[]) => {
     let numDecesso = 0
-    const detenuti = getUtenti('detenuto') as Detenuto[]
     for (const detenuto of detenuti) {
         if (detenuto.deceduto === true) {
             numDecesso = numDecesso + 1
