@@ -3,6 +3,7 @@ import { getUtenti } from './mappatura'
 import { btn, btnRemove, id, selModalita, selValore } from './dichiarazioni'
 import { cambio, detenuto, guardia, init } from './grafica'
 import { rimuovi, salva } from './database'
+import { decesso, evasione, numero } from './statistiche'
 
 init()
 
@@ -43,6 +44,7 @@ export function visualizzazione() {
                 id.innerHTML += `
                     <option value="${detenuto.id}">${detenuto.id}</option>
                 `
+                
         }
     } else {
         guardia()
@@ -66,15 +68,24 @@ export function visualizzazione() {
            id.innerHTML += `
                     <option value="${guardia.id}">${guardia.id}</option>
                 `
+            
         }
     }
-
+    numero()
+    evasione()
+    decesso()
 }
+
+
+
+
 
 selValore.addEventListener('change', cambio)
 selModalita.addEventListener('change', visualizzazione)
 btn.addEventListener('click', salva)
 btnRemove.addEventListener('click', rimuovi)
-
+window.addEventListener('load', numero)
+window.addEventListener('load', evasione)
+window.addEventListener('load', decesso)
 
 
