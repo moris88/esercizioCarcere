@@ -1,9 +1,5 @@
-import {
-    divContenitore1,
-    divContenitore3,
-    selModalita,
-    selValore,
-} from './dichiarazioni'
+import { divContenitore1, divContenitore3, selModalita, selValore } from "./main"
+
 
 export function cambio() {
     //valore.value === 'g' ? dati_guardia() : dati_detenuto()
@@ -35,8 +31,8 @@ const dati_guardia = () => {
             <th>Mansione</th>
         </tr>
         <tr>
-            <td><input type="date" aria-label="data" id="data_assunzione"></td>
-            <td><input type="text" id="mansione"></td>
+            <td><input type="date" aria-label="data"  class="form-control" id="data_assunzione"></td>
+            <td><input type="text"  class="form-control"  id="mansione"></td>
         </tr>
         </tbody>
     </table>`
@@ -52,21 +48,21 @@ const dati_detenuto = () => {
             <th>Crimine commesso</th>
         </tr>
         <tr>
-            <td><input type="date" aria-label="data" id="data_carcerazione"></td>
-            <td><input type="date" aria-label="data" id="data_scarcerazione"></td>
-            <td><input type="text" id="crimine"></td>
+            <td><input type="date" aria-label="data" class="form-control" id="data_carcerazione"></td>
+            <td><input type="date" aria-label="data" class="form-control" id="data_scarcerazione"></td>
+            <td><input type="text" aria-label="crimine"  class="form-control" id="crimine"></td>
             <td>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="checkEvaso">
-                <label class="form-check-label" for="flexCheckDefault">
+                <input class="form-check-input" class="form-control"  type="checkbox" value="" id="checkEvaso">
+                <label class="form-check-label" class="form-control"  for="flexCheckDefault">
                 Evaso
                 </label>
             </div>
             </td>
             <td>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="checkDeceduto">
-                <label class="form-check-label" for="flexCheckDefault">
+                <input class="form-check-input" class="form-control" type="checkbox" value="" id="checkDeceduto">
+                <label class="form-check-label" class="form-control" for="flexCheckDefault">
                 Deceduto
                 </label>
             </div>
@@ -78,7 +74,7 @@ const dati_detenuto = () => {
 
 export const guardia = () => {
     divContenitore1.innerHTML = `
-    <table class="table">
+    <table class="table table-success table-striped">
     <thead>
     <tr>
         <th scope="col">ID</th>
@@ -99,7 +95,7 @@ export const guardia = () => {
 
 export const detenuto = () => {
     divContenitore1.innerHTML = `
-        <table class="table">
+        <table class="table table-success table-striped">
         <thead>
         <tr>
             <th scope="col">ID</th>
@@ -124,14 +120,15 @@ export const init = () => {
     guardia()
 }
 
-/**
- * function creazioneTabella(listaCampi: Campo[]){
 
+/* function creazioneTabella(listaCampi: Campo[]){
 }
 
 function inserisciTupla(listaRecord: Record[]){
 
 }
 
-function inserisciP(testo: string)
- */
+function inserisci(testo: string){
+
+} */
+
