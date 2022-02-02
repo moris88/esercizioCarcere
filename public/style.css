@@ -3,6 +3,17 @@
     padding: 2% 2% 2% 2%;
 }
 
-.container1, .container2, .container3, .container4{
+header{
+    background-image: radial-gradient(circle at 57.63% 6.75%, #bce1cd 0, #bad0c0 12.5%, #b4beb4 25%, #aaaaaa 37.5%, #9c96a1 50%, #8b839a 62.5%, #777394 75%, #606690 87.5%, #465c8c 100%);
+    padding: 2% 2% 2% 2%;
+    color: white;
+    width: 100%;
+}
+
+.container1, .container2, .container3, .container4, .container5, .margin, h1{
     text-align: center;
+}
+
+h4{
+    color: red;
 }
