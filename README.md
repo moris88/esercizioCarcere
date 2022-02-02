@@ -26,7 +26,8 @@
     - il numero di detenuti deceduti all’interno della struttura.
 
 esempio detenuto:
-    var detenuto1 = {
+
+    let detenuto = {
         nome: 'Giacomo',
         cognome: "Pippo",
         eta: 25,
@@ -38,21 +39,10 @@ esempio detenuto:
         evaso: true,
         deceduto: false
     }
-    var detenuto2 = {
-        nome: 'Antonina', 
-        cognome: "Topolina", 
-        eta: 45,
-        tipo: 'detenuto',
-        data_carcerazione: '25-10-2018',
-        data_scarcerazione: '25-10-2038',
-        pena: 20,
-        crimine: 'truffa ai danni dello stato',
-        evaso: false,
-        deceduto: false
-    }
 
 esempio guardia:
-    var guardia1 = {
+
+    let guardia = {
         nome: 'Maurizio', 
         cognome: "Pluto", 
         eta: 34,
@@ -60,14 +50,16 @@ esempio guardia:
         data_assunzione: '17-05-2020',
         descrizione: 'agente'
     }
-    var guardia2 = {
-        nome: 'Mattia', 
-        cognome: "Paperino", 
-        eta: 32,
-        tipo: 'guardia',
-        data_assunzione: '01-01-2018',
-        descrizione: 'agente'
-    }
 
 esempio fascicolo:
-    fascicolo = [guardia1, detenuto1, guardia2, detenuto2]
+
+    const fascicolo = {
+        guardie: [
+            guardia1,
+            guardia2
+        ], 
+        detenuti: [
+            detenuto1,
+            detenuto2
+        ]
+    }
