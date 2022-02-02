@@ -55,13 +55,6 @@ const dati_detenuto = () => {
             <td><input type="date" aria-label="data" id="data_carcerazione"></td>
             <td><input type="date" aria-label="data" id="data_scarcerazione"></td>
             <td><input type="text" id="crimine"></td>
-        </tr>
-        <tr>
-            <th>Evaso</th>
-            <th>Deceduto</th>
-            <th></th>
-        </tr>
-        <tr>
             <td>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="checkEvaso">
@@ -70,7 +63,7 @@ const dati_detenuto = () => {
                 </label>
             </div>
             </td>
-         <td>
+            <td>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="checkDeceduto">
                 <label class="form-check-label" for="flexCheckDefault">
