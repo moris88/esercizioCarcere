@@ -1,9 +1,7 @@
-import { divContenitore3, id, selModalita, selValore } from './dichiarazioni'
 import { detenuto, guardia } from './grafica'
-import { visualizzazione } from './main'
-import { nG, nD, addUtente, removeUtente } from './mappatura'
+import { id, selModalita, selValore, visualizzazione } from './main'
+import { nG, nD, fascicolo } from './mappatura'
 import { pulizia } from './pulire'
-import { decesso, evasione, numero } from './statistiche'
 import { Detenuto, Guardia, Type } from './types/global'
 
 export function salva() {
@@ -66,20 +64,27 @@ export function salva() {
     selValore.value = 'scelta'
 }
 
-export function rimuovi() {
-    let tipo: Type = selModalita.value as Type
-    let pos = parseInt(id.value)
-    if (tipo === 'detenuto') {
-        removeUtente(pos, 'detenuto')
-        visualizzazione()
-        numero()
-        evasione()
-        decesso()
+
+export const addUtente = (utente: Detenuto | Guardia) => {
+    if (utente.tipo === 'detenuto') {
+        fascicolo.detenuti.push(utente as Detenuto)
     } else {
-        removeUtente(pos, 'guardia')
-        visualizzazione()
-        numero()
-        evasione()
-        decesso()
+        fascicolo.guardie.push(utente as Guardia)
+    }
+}
+
+export const removeUtente = (pos: number, tipo: Type) => {
+    if (tipo === 'detenuto') {
+        fascicolo.detenuti.splice(pos - 1, 1)
+    } else {
+        fascicolo.guardie.splice(pos - 1, 1)
+    }
+}
+
+export const getUtenti = (tipo: Type) => {
+    if (tipo === 'detenuto') {
+        return fascicolo.detenuti as Detenuto[]
+    } else {
+        return fascicolo.guardie as Guardia[]
     }
 }
