@@ -28,23 +28,23 @@
 
             <div class="margin">
                 <div class="row">
-                  <div class="col" style="text-align:right;"><h6>Quale tipo di utente vuoi visualizzare:</h6></div>
-                  <div class="col" style="text-align: left;">
-                    <select name="modalita" id="modalita">
+                  <div class="col-5" style="text-align:right;"><h6>Quale tipo di utente vuoi visualizzare:</h6></div>
+                  <div class="col-2" style="text-align: left;">
+                    <select name="modalita"  class="form-control"  id="modalita">
                       <option value="guardia" selected>GUARDIA</option>
                        <option value="detenuto">DETENUTO</option>
                    </select>
+                  </div>
                   </div>
                 <div class="row"></div>
               </div>
                 <div class="container1">
                 
                 </div>
-                <hr>
                 <div class="row">
                   <div class="col-4" style="text-align: right;"><h6>Inserisci ID dell'utente che vuoi eliminare:</h6></div>
                   <div class="col-1">
-                    <select name="id" id="id">
+                    <select name="id"  class="form-control"  id="id">
                       
                    </select>
                   </div>
@@ -52,42 +52,47 @@
                     <button type="button" id="rimuovi" class="btn btn-danger" style="text-align: left;">Rimuovi</button>
                   </div>
                 </div>
-                <hr>
                 <div class="container2">
                     <h1>Nuovo Utente</h1>
-                    <table class="table">
-                        <tbody>
-                          <tr>
-                            <td></td>
-                            <th style="text-align: left;">
-                              Chi vuoi inserire: 
-                                <select name="tipo" id="tipo">
-                                    <option value="scelta" selected>SELEZIONA...</option>
-                                     <option value="g">GUARDIA</option>
-                                     <option value="d">DETENUTO</option>
-                                 </select>
-                             </th>
-                             <td></td>
-                          </tr>
-                          <tr>
-                            <th>Nome</th>
-                            <th>Cognome</th>
-                            <th>Età</th>
-                          </tr>
-                          <tr>
-                            <td><input type="text" aria-label="Nome" class="form-control" id="nome"></td>
-                            <td><input type="text" aria-label="Cognome" class="form-control" id="cognome"></td>
-                            <td><input type="number" id="eta"></td>
-                          </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="container3">
+                    <form>
+                      <div class="mb-3">
+                        <label for="scelta" class="form-label">Chi vuoi inserire: </label>
+                        <select name="tipo" id="tipo">
+                          <option value="scelta"  class="form-control" selected>SELEZIONA...</option>
+                           <option value="g">GUARDIA</option>
+                           <option value="d">DETENUTO</option>
+                       </select>
+                      </div>
+                      <div class="p-3">
+                        <div class="row">
+                          <div class="col">
+                            <label for="name" class="form-label">Nome</label>
+                          </div>
+                          <div class="col">
+                            <label class="form-check-label" for="cognome">Cognome</label>
+                          </div>
+                          <div class="col">
+                            <label class="form-check-label" for="eta">Età</label>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <input type="text" aria-label="Nome" class="form-control" id="nome">
+                          </div>
+                          <div class="col">
+                            <input type="text" aria-label="Cognome" class="form-control" id="cognome">
+                          </div>
+                          <div class="col">
+                            <input type="number" class="form-control" id="eta">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3 form-check" id="container3">
                     
                 </div>
-                <div class="container4">
-                  <button type="button" id="salva" class="btn btn-outline-secondary">Salva</button>
-                </div>
+                      <button type="button" id="salva" class="btn btn-outline-secondary">Salva</button>
+                    </form>
+
                 <hr>
                 <div class="container5">
                   <div class="row">
