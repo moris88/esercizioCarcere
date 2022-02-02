@@ -12,7 +12,7 @@
       - La data di carcerazione
       - La data di scarcerazione
       - Il crimine commesso
-  
+
   Visto che sei tu il capo, decidi se usare lo stesso oggetto per gestire sia le guardie che i criminali.
   In ogni caso dovrai definire la banca dati della prigione: crea un array di guardie, uno di detenuti.
   
@@ -33,6 +33,7 @@
     - il numero di detenuti deceduti all’interno della struttura.
 
 esempio detenuto:
+
 
     let detenuto = {
         nome: 'Giacomo',
