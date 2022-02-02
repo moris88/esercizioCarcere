@@ -132,7 +132,8 @@ export const init = () => {
 }
 
 
-function creazioneTabella(listaCampi: Campo[]){
+/**
+ * function creazioneTabella(listaCampi: Campo[]){
 
 }
 
@@ -141,3 +142,4 @@ function inserisciTupla(listaRecord: Record[]){
 }
 
 function inserisciP(testo: string)
+ */
