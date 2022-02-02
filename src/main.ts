@@ -1,29 +1,54 @@
 import { Detenuto, Guardia, Type } from './types/global.d'
-import { getUtenti } from './mappatura'
-import { btn, btnRemove, id, selModalita, selValore } from './dichiarazioni'
 import { cambio, detenuto, guardia, init } from './grafica'
-import { rimuovi, salva } from './database'
+import { getUtenti, removeUtente, salva } from './database'
 import { decesso, evasione, numero } from './statistiche'
+
+export const selValore = window.document.getElementById(
+    'tipo'
+) as HTMLSelectElement
+export const divContenitore3 = window.document.getElementById(
+    '.container3'
+) as HTMLDivElement
+export const selModalita = window.document.getElementById(
+    'modalita'
+) as HTMLSelectElement
+export const divContenitore1 = window.document.querySelector(
+    '.container1'
+) as HTMLDivElement
+export const divContenitore2 = window.document.querySelector(
+    '.container2'
+) as HTMLDivElement
+export const btn = window.document.getElementById('salva') as HTMLButtonElement
+export const id = window.document.getElementById('id') as HTMLSelectElement
+export const btnRemove = window.document.getElementById(
+    'rimuovi'
+) as HTMLButtonElement
+export const nG = window.document.getElementById('nG') as HTMLElement
+export const nD = window.document.getElementById('nD') as HTMLElement
+export const eD = window.document.getElementById('eD') as HTMLElement
+export const dD = window.document.getElementById('dD') as HTMLElement
+
 
 init()
 
 window.addEventListener('load', function () {
     visualizzazione()
+    numero([],[])
+    evasione([])
+    decesso([])
 })
 
 export function visualizzazione() {
     id.innerHTML = ``
-    let tipo: Type = selModalita.value as Type
-    if (tipo === 'detenuto') {
+    const tipo: Type = selModalita.value as Type
+    const rigo = window.document.getElementById(
+        'rigo'
+    ) as HTMLTableSectionElement
+    const detenuti = getUtenti('detenuto') as Detenuto[]
+    const guardie = getUtenti('guardia') as Guardia[]
+    if (tipo === 'detenuto' && detenuti.length !== 0) {
         detenuto()
-        const rigo = window.document.getElementById(
-            'rigo'
-        ) as HTMLTableSectionElement
         rigo.innerHTML = ''
-        const detenuti = getUtenti('detenuto') as Detenuto[]
-        if (detenuti.length === 0) {
-            rigo.innerHTML = `<tr>Non ci sono elementi da visualizzare</tr>`
-        } else {
             for (const detenuto of detenuti) {
                 rigo.innerHTML += `
                 <tr>
@@ -48,16 +73,9 @@ export function visualizzazione() {
                 `
             }
         }
-    } else {
-        guardia()
-        const rigo = window.document.getElementById(
-            'rigo'
-        ) as HTMLTableSectionElement
-        rigo.innerHTML = ''
-        const guardie = getUtenti('guardia') as Guardia[]
-        if (guardie.length === 0) {
-            rigo.innerHTML = `<tr>Non ci sono elementi da visualizzare</tr>`
-        } else {
+        else if(tipo === 'guardia' && guardie.length != 0){
+            guardia()
+            rigo.innerHTML = ''
             for (const guardia of guardie) {
                 rigo.innerHTML += `
             <tr>
@@ -71,22 +89,26 @@ export function visualizzazione() {
                 }/${guardia.data_assunzione?.getFullYear()}</td>
                 <td>${guardia.descrizione}</td>
             </tr>
-           `
+        `
                 id.innerHTML += `
                     <option value="${guardia.id}">${guardia.id}</option>
                 `
             }
+        
+        } else {
+            rigo.innerHTML = `<tr>Non ci sono elementi da visualizzare</tr>`
         }
-    }
-    numero()
-    evasione()
-    decesso()
+    numero(detenuti,guardie)
+    evasione(detenuti)
+    decesso(detenuti)
 }
 
 selValore.addEventListener('change', cambio)
 selModalita.addEventListener('change', visualizzazione)
 btn.addEventListener('click', salva)
-btnRemove.addEventListener('click', rimuovi)
-window.addEventListener('load', numero)
-window.addEventListener('load', evasione)
-window.addEventListener('load', decesso)
+btnRemove.addEventListener('click', function(){
+    const pos = parseInt(id.value)
+    const tipo = selValore.value as Type
+    removeUtente(pos, tipo)
+})
+
