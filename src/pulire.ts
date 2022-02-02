@@ -1,12 +1,4 @@
-import { removeUtente } from './mappatura'
-import {
-    divContenitore2,
-    divContenitore3,
-    id,
-    selModalita,
-} from './dichiarazioni'
-import { cambio } from './grafica'
-import { Type } from './types/global'
+import { divContenitore2, divContenitore3 } from "./main"
 
 export function pulizia() {
     divContenitore2.innerHTML = `
@@ -18,7 +10,7 @@ export function pulizia() {
                             <th style="text-align: left;">
                               Chi vuoi inserire: 
                                 <select name="tipo" id="tipo">
-                                    <option value="scelta" selected>SELEZIONA...</option>
+                                    <option value="scelta"  class="form-control"   selected>SELEZIONA...</option>
                                      <option value="g">GUARDIA</option>
                                      <option value="d">DETENUTO</option>
                                  </select>
