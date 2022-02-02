@@ -27,25 +27,29 @@
             </header>
 
             <div class="margin">
-              <div class="row">
-                <select name="modalita" id="modalita">
-                  <option value="guardia" selected>GUARDIA</option>
-                   <option value="detenuto">DETENUTO</option>
-               </select>
+                <div class="row">
+                  <div class="col" style="text-align:right;"><h6>Quale tipo di utente vuoi visualizzare:</h6></div>
+                  <div class="col" style="text-align: left;">
+                    <select name="modalita" id="modalita">
+                      <option value="guardia" selected>GUARDIA</option>
+                       <option value="detenuto">DETENUTO</option>
+                   </select>
+                  </div>
+                <div class="row"></div>
               </div>
                 <div class="container1">
                 
                 </div>
                 <hr>
                 <div class="row">
-                  <div class="col"><h6>Inserisci ID dell'utente che vuoi eliminare:</h6></div>
-                  <div class="col">
+                  <div class="col-4" style="text-align: right;"><h6>Inserisci ID dell'utente che vuoi eliminare:</h6></div>
+                  <div class="col-1">
                     <select name="id" id="id">
                       
                    </select>
                   </div>
-                  <div class="col">
-                    <button type="button" id="rimuovi" class="btn btn-danger">Rimuovi</button>
+                  <div class="col-2">
+                    <button type="button" id="rimuovi" class="btn btn-danger" style="text-align: left;">Rimuovi</button>
                   </div>
                 </div>
                 <hr>
