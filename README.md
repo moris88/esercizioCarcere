@@ -1,6 +1,5 @@
 # Carcere di GothamCity
 
-Il carcere di Gotham City
   Sei appena stato nominato direttore presso il carcere di Gotham City.
   Hai l'arduo compito di scrivere un programma che gestisca:
   fascicolo = array[{},{}]
