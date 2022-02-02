@@ -124,7 +124,6 @@ export const init = () => {
     guardia()
 }
 
-
 /**
  * function creazioneTabella(listaCampi: Campo[]){
 

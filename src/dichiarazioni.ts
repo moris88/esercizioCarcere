@@ -15,7 +15,9 @@ export const divContenitore2 = window.document.querySelector(
 ) as HTMLDivElement
 export const btn = window.document.getElementById('salva') as HTMLButtonElement
 export const id = window.document.getElementById('id') as HTMLSelectElement
-export const btnRemove = window.document.getElementById('rimuovi') as HTMLButtonElement
+export const btnRemove = window.document.getElementById(
+    'rimuovi'
+) as HTMLButtonElement
 export const nG = window.document.getElementById('nG') as HTMLElement
 export const nD = window.document.getElementById('nD') as HTMLElement
 export const eD = window.document.getElementById('eD') as HTMLElement

@@ -1,9 +1,14 @@
-import { removeUtente } from './mappatura';
-import { divContenitore2, divContenitore3, id, selModalita } from './dichiarazioni'
+import { removeUtente } from './mappatura'
+import {
+    divContenitore2,
+    divContenitore3,
+    id,
+    selModalita,
+} from './dichiarazioni'
 import { cambio } from './grafica'
-import { Type } from './types/global';
+import { Type } from './types/global'
 
-export function pulizia (){
+export function pulizia() {
     divContenitore2.innerHTML = `
     <h1>Nuovo Utente</h1>
                     <table class="table">
@@ -35,5 +40,3 @@ export function pulizia (){
     `
     divContenitore3.innerHTML = ``
 }
-
-
