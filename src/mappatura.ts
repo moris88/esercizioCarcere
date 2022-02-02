@@ -1,7 +1,8 @@
-import { Detenuto, Fascicolo, Guardia, Type } from './types/global.d'
+import { Detenuto, Fascicolo, Guardia } from './types/global.d'
 
 export let nG = 0
 export let nD = 0
+
 
 let guardia1: Guardia = {
     id: 1,
@@ -59,31 +60,9 @@ let detenuto2: Detenuto = {
 
 nD++
 
-let fascicolo: Fascicolo = {
+export let fascicolo: Fascicolo = {
     guardie: [guardia1, guardia2],
-    detenuti: [detenuto1, detenuto2],
+    detenuti: [detenuto1, detenuto2]
 }
 
-export const addUtente = (utente: Detenuto | Guardia) => {
-    if (utente.tipo === 'detenuto') {
-        fascicolo.detenuti.push(utente as Detenuto)
-    } else {
-        fascicolo.guardie.push(utente as Guardia)
-    }
-}
 
-export const removeUtente = (pos: number, tipo: Type) => {
-    if (tipo === 'detenuto') {
-        fascicolo.detenuti.splice(pos - 1, 1)
-    } else {
-        fascicolo.guardie.splice(pos - 1, 1)
-    }
-}
-
-export const getUtenti = (tipo: Type) => {
-    if (tipo === 'detenuto') {
-        return fascicolo.detenuti as Detenuto[]
-    } else {
-        return fascicolo.guardie as Guardia[]
-    }
-}
