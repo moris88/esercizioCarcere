@@ -38,7 +38,6 @@ esempio detenuto:
         evaso: true,
         deceduto: false
     }
-
     var detenuto2 = {
         nome: 'Antonina', 
         cognome: "Topolina", 
@@ -61,7 +60,6 @@ esempio guardia:
         data_assunzione: '17-05-2020',
         descrizione: 'agente'
     }
-
     var guardia2 = {
         nome: 'Mattia', 
         cognome: "Paperino", 
