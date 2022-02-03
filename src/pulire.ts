@@ -1,7 +1,7 @@
-import { divContenitore2, divContenitore3 } from './main'
+import { divNuovoUtente, divDatiAggiuntiviUtente } from './main'
 
 export function pulizia() {
-    divContenitore2.innerHTML = `
+  divNuovoUtente.innerHTML = `
     <h1>Nuovo Utente</h1>
                     <table class="table">
                         <tbody>
@@ -30,5 +30,5 @@ export function pulizia() {
                         </tbody>
                     </table>
     `
-    divContenitore3.innerHTML = ``
+    divDatiAggiuntiviUtente.innerHTML = ``
 }

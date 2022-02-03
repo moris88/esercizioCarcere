@@ -1,22 +1,25 @@
 import { Detenuto, Guardia, Type } from './types/global.d'
-import { cambio, init, onChangeSwitchType } from './grafica'
+import { cambiaVisualizzazioneUtente, cambioVisualizzazioneTabella, init } from './grafica'
 import { getUtenti, removeUtente, salva } from './database'
 import { decesso, evasione, numero } from './statistiche'
 
-export const selValore = window.document.getElementById(
-    'tipo'
+export const scegliTipoUtente = window.document.getElementById(
+    'scegliTipoUtente'
 ) as HTMLSelectElement
-export const divContenitore3 = window.document.getElementById(
-    '.container3'
+export const divDatiAggiuntiviUtente = window.document.getElementById(
+    '.divDatiAggiuntiviUtente'
 ) as HTMLDivElement
-export const selModalita = window.document.getElementById(
-    'modalita'
+export const divStatistiche = window.document.getElementById(
+    '.divStatistiche'
+) as HTMLDivElement
+export const scegliVisualizzaUtente = window.document.getElementById(
+    'scegliVisualizzaUtente'
 ) as HTMLSelectElement
-export const divContenitore1 = window.document.querySelector(
-    '.container1'
+export const divTabella = window.document.querySelector(
+    '.divTabella'
 ) as HTMLDivElement
-export const divContenitore2 = window.document.querySelector(
-    '.container2'
+export const divNuovoUtente = window.document.querySelector(
+    '.divNuovoUtente'
 ) as HTMLDivElement
 export const btn = window.document.getElementById('salva') as HTMLButtonElement
 export const id = window.document.getElementById('id') as HTMLSelectElement
@@ -27,14 +30,13 @@ export const nG = window.document.getElementById('nG') as HTMLElement
 export const nD = window.document.getElementById('nD') as HTMLElement
 export const eD = window.document.getElementById('eD') as HTMLElement
 export const dD = window.document.getElementById('dD') as HTMLElement
-export const colonna = window.document.getElementById('colonna') as HTMLDivElement
 
-init()
+init(divTabella)
 
 window.addEventListener('load', function () {
     const detenuti = getUtenti('detenuto') as Detenuto[]
     const guardie = getUtenti('guardia') as Guardia[]
-    onChangeSwitchType()
+    cambiaVisualizzazioneUtente('guardia')
     numero(detenuti, guardie)
     evasione(detenuti)
     decesso(detenuti)
@@ -42,7 +44,7 @@ window.addEventListener('load', function () {
 
 export function visualizzazione() {
     console.log('Ho schiacciato il pulsante!')
-    onChangeSwitchType()
+    cambiaVisualizzazioneUtente(scegliVisualizzaUtente.value as Type)
     /**
     id.innerHTML = ``
     const tipo: Type = selModalita.value as Type
@@ -109,11 +111,16 @@ export function visualizzazione() {
     decesso(detenuti)*/
 }
 
-selValore.addEventListener('change', cambio)
-selModalita.addEventListener('change', visualizzazione)
+function visualizzaTabella() {
+    const tipo = scegliVisualizzaUtente.value as Type
+    cambioVisualizzazioneTabella(tipo, divTabella)
+}
+
+scegliTipoUtente.addEventListener('change', visualizzaTabella)
+scegliVisualizzaUtente.addEventListener('change', visualizzazione)
 btn.addEventListener('click', salva)
 btnRemove.addEventListener('click', function () {
     const pos = parseInt(id.value)
-    const tipo = selValore.value as Type
+    const tipo = scegliTipoUtente.value as Type
     removeUtente(pos, tipo)
 })

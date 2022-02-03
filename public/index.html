@@ -28,40 +28,51 @@
 
             <div class="margin">
                 <div class="row">
-                  <div class="col-5" style="text-align:right;"><h6>Quale tipo di utente vuoi visualizzare:</h6></div>
+                  <div class="col-5" style="text-align:right;">
+                      <h6>Quale tipo di utente vuoi visualizzare:</h6>
+                  </div>
                   <div class="col-2" style="text-align: left;">
-                    <select name="modalita"  class="form-control"  id="modalita">
+                    <select name="modalita"  class="form-control"  id="scegliVisualizzaUtente">
                       <option value="guardia" selected>GUARDIA</option>
-                       <option value="detenuto">DETENUTO</option>
-                   </select>
+                      <option value="detenuto">DETENUTO</option>
+                    </select>
                   </div>
-                  </div>
-                <div class="row"></div>
+                </div>
+                <br>
               </div>
-                <div class="container1">
+                <div class="divTabella">
                 
                 </div>
                 <div class="row">
-                  <div class="col-4" style="text-align: right;"><h6>Inserisci ID dell'utente che vuoi eliminare:</h6></div>
+                  <div class="col-4" style="text-align: right;">
+                    <h6>Inserisci ID dell'utente che vuoi eliminare:</h6>
+                  </div>
                   <div class="col-1">
                     <select name="id"  class="form-control"  id="id">
                       
-                   </select>
+                    </select>
                   </div>
                   <div class="col-2">
-                    <button type="button" id="rimuovi" class="btn btn-danger" style="text-align: left;">Rimuovi</button>
+                    <button 
+                      type="button" 
+                      id="rimuovi" 
+                      class="btn btn-danger" 
+                      style="text-align: left;"
+                    >
+                      Rimuovi
+                    </button>
                   </div>
                 </div>
-                <div class="container2">
+                <div class="divNuovoUtente">
                     <h1>Nuovo Utente</h1>
                     <form>
                       <div class="mb-3">
                         <label for="scelta" class="form-label">Chi vuoi inserire: </label>
-                        <select name="tipo" id="tipo">
-                          <option value="scelta"  class="form-control" selected>SELEZIONA...</option>
-                           <option value="g">GUARDIA</option>
-                           <option value="d">DETENUTO</option>
-                       </select>
+                        <select name="tipo" id="scegliTipoUtente">
+                            <option value="scelta"  class="form-control" selected>SELEZIONA...</option>
+                            <option value="guardia">GUARDIA</option>
+                            <option value="detenuto">DETENUTO</option>
+                        </select>
                       </div>
                       <div class="p-3">
                         <div class="row">
@@ -87,14 +98,14 @@
                           </div>
                         </div>
                       </div>
-                      <div class="mb-3 form-check" id="container3">
+                      <div class="mb-3 form-check" id="divDatiAggiuntiviUtente">
                     
-                </div>
+                      </div>
                       <button type="button" id="salva" class="btn btn-outline-secondary">Salva</button>
                     </form>
 
                 <hr>
-                <div class="container5">
+                <div class="divStatistiche">
                   <div class="row">
                     <div class="col">
                       <h5>Le guardie sono: </h5>

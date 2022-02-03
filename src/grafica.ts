@@ -1,30 +1,44 @@
 import {
-    colonna,
-    divContenitore1,
-    divContenitore3,
-    selModalita,
-    selValore,
+    divTabella,
 } from './main'
-import { Campo } from './types/global'
+import { Campo, Type } from './types/global'
 
-export function cambio() {
-    //valore.value === 'g' ? dati_guardia() : dati_detenuto()
-    if (selValore.value === 'g') {
-        dati_guardia()
-    } else if (selValore.value === 'd') {
-        dati_detenuto()
-    } else {
-        divContenitore3.innerHTML = ``
+export function cambioVisualizzazioneTabella(tipo: Type, divElement: HTMLDivElement) {
+    if (tipo === 'guardia') {
+        dati_guardia(divElement)
+    } else if (tipo ==='detenuto') {
+        dati_detenuto(divElement)
     }
 }
 
-export function onChangeSwitchType() {
-    console.log(selModalita.value)
-    selModalita.value === 'guardia' ? guardia() : detenuto()    
+export function cambiaVisualizzazioneUtente(tipo: Type) {
+    tipo === 'guardia' ? 
+    creazioneTabella([
+        'ID',
+        'Nome',
+        'Cognome',
+        'Età',
+        'Tipo',
+        'Data assunzione',
+        'Mansione',
+    ]) : 
+    creazioneTabella([
+        'ID',
+        'Nome',
+        'Cognome',
+        'Età',
+        'Tipo',
+        'Data carcerazione',
+        'Data scarcerazione',
+        'Pena',
+        'Crimine',
+        'Evaso',
+        'Deceduto',
+    ])    
 }
 
-const dati_guardia = () => {
-    divContenitore3.innerHTML = `
+const dati_guardia = (divElement: HTMLDivElement) => {
+    divElement.innerHTML = `
     <table class="table">
         <tbody>
         <tr>
@@ -39,8 +53,8 @@ const dati_guardia = () => {
     </table>`
 }
 
-const dati_detenuto = () => {
-    divContenitore3.innerHTML = `
+const dati_detenuto = (divElement: HTMLDivElement) => {
+    divElement.innerHTML = `
     <table class="table">
         <tbody>
         <tr>
@@ -73,65 +87,24 @@ const dati_detenuto = () => {
     </table>`
 }
 
-export const guardia = () => {
-    console.log('Guardia')
-    divContenitore1.innerHTML = `
-    <table class="table table-success table-striped">
-        <thead>
-        <tr>
-            ${creazioneTabella([
-                'ID',
-                'Nome',
-                'Cognome',
-                'Età',
-                'Tipo',
-                'Data assunzione',
-                'Mansione',
-            ])}
-        </tr>
-        </thead>
-        <tbody id="rigo"></tbody>
-    </table>
-    `
-}
-
-export const detenuto = () => {
-    console.log('Detenuto')
-    divContenitore1.innerHTML = `<table class="table table-success table-striped">
-            <thead>
-            <tr id="colonna">
-                ${creazioneTabella([
-                    'ID',
-                    'Nome',
-                    'Cognome',
-                    'Età',
-                    'Tipo',
-                    'Data carcerazione',
-                    'Data scarcerazione',
-                    'Pena',
-                    'Crimine',
-                    'Evaso',
-                    'Deceduto',
-                ])}
-                </tr>
-                </thead>
-                <tbody id="rigo"></tbody>
-            </table>
-        `
-}
-
-export const init = () => {
-    guardia()
+export const init = (divElement: HTMLDivElement) => {
+    divElement.innerHTML = creazioneTabella([
+        'ID',
+        'Nome',
+        'Cognome',
+        'Età',
+        'Tipo',
+        'Data assunzione',
+        'Mansione',
+    ])
 }
 
 function creazioneTabella(listaCampi: Campo[]) {
-    let output = ``
-    if(colonna !== null){
-        for (let i = 0; i < listaCampi.length; i++) {
-            output += `<th scope="col">${listaCampi[i]}</th>`
-        }
+    let output = `<table class="table table-success table-striped"><thead><tr>`
+    for (let i = 0; i < listaCampi.length; i++) {
+        output += `<th scope="col">${listaCampi[i]}</th>`
     }
-    console.log(output)
+    output += `</tr></thead><tbody id="rigo"></tbody></table>`
     return output
 }
 
