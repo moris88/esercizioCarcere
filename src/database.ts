@@ -1,11 +1,9 @@
-import { detenuto, guardia } from './grafica'
-import { id, selModalita, selValore, visualizzazione } from './main'
 import { nG, nD, fascicolo } from './mappatura'
 import { pulizia } from './pulire'
 import { Detenuto, Guardia, Type } from './types/global'
 
 export function salva() {
-    let tipo = selValore.value
+   /*  let tipo = scegliTipoUtente.value
     let idG = guardia.length + nG
     let idD = detenuto.length + nD
     let nome = document.getElementById('nome') as HTMLInputElement
@@ -61,7 +59,7 @@ export function salva() {
     }
     visualizzazione()
     pulizia()
-    selValore.value = 'scelta'
+    scegliTipoUtente.value = 'scelta' */
 }
 
 export const addUtente = (utente: Detenuto | Guardia) => {

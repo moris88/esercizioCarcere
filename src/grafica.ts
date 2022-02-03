@@ -1,9 +1,6 @@
-import {
-    divTabella,
-} from './main'
-import { Campo, Type } from './types/global'
+import { Campo, Detenuto, Guardia, Type } from './types/global'
 
-export function cambioVisualizzazioneTabella(tipo: Type, divElement: HTMLDivElement) {
+export function cambiaVisualizzazioneUtente(tipo: Type, divElement: HTMLDivElement) {
     if (tipo === 'guardia') {
         dati_guardia(divElement)
     } else if (tipo ==='detenuto') {
@@ -11,9 +8,9 @@ export function cambioVisualizzazioneTabella(tipo: Type, divElement: HTMLDivElem
     }
 }
 
-export function cambiaVisualizzazioneUtente(tipo: Type) {
+export function cambioVisualizzazioneTabella(tipo: Type, divElement: HTMLDivElement) {
     tipo === 'guardia' ? 
-    creazioneTabella([
+    divElement.innerHTML = creazioneTabella([
         'ID',
         'Nome',
         'Cognome',
@@ -22,7 +19,7 @@ export function cambiaVisualizzazioneUtente(tipo: Type) {
         'Data assunzione',
         'Mansione',
     ]) : 
-    creazioneTabella([
+    divElement.innerHTML = creazioneTabella([
         'ID',
         'Nome',
         'Cognome',
@@ -108,10 +105,41 @@ function creazioneTabella(listaCampi: Campo[]) {
     return output
 }
 
-/*function inserisciTupla(listaRecord: Record[]){
-
+export function inserisciTupla(utenti: Detenuto[]|Guardia[], divElement: HTMLElement){
+    divElement.innerHTML = ``
+    for(let utente of utenti){
+        if(utente.tipo==='detenuto'){
+            const detenuto = utente as Detenuto
+            divElement.innerHTML += `
+            <tr>
+                <td>${detenuto.id}</td>
+                <td>${detenuto.nome}</td>
+                <td>${detenuto.cognome}</td>
+                <td>${detenuto.eta}</td>
+                <td>${detenuto.tipo}</td>
+                <td>${detenuto.data_carcerazione}</td>
+                <td>${detenuto.data_scarcerazione}</td>
+                <td>${detenuto.pena}</td>
+                <td>${detenuto.crimine}</td>
+                <td>${detenuto.evaso}</td>
+                <td>${detenuto.deceduto}</td>
+            </tr>`
+        }else{
+            const guardia = utente as Guardia
+            divElement.innerHTML += `
+            <tr>
+                <td>${guardia.id}</td>
+                <td>${guardia.nome}</td>
+                <td>${guardia.cognome}</td>
+                <td>${guardia.eta}</td>
+                <td>${guardia.tipo}</td>
+                <td>${guardia.data_assunzione}</td>
+                <td>${guardia.descrizione}</td>
+            </tr>`
+        }
+    }
 }
 
-function inserisci(testo: string){
+/*function inserisci(testo: string){
 
 } */
