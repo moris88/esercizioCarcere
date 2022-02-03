@@ -1,4 +1,4 @@
-import { divContenitore2, divContenitore3 } from "./main"
+import { divContenitore2, divContenitore3 } from './main'
 
 export function pulizia() {
     divContenitore2.innerHTML = `

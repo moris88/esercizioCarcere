@@ -1,5 +1,9 @@
 export type Type = 'detenuto' | 'guardia'
 
+export interface Campo {
+    [colonna: number]: string
+}
+
 export interface Guardia {
     id: number
     nome: string

@@ -1,4 +1,3 @@
-
 import { dD, eD, nD, nG } from './main'
 import { Detenuto, Guardia } from './types/global'
 

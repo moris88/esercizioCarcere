@@ -64,7 +64,6 @@ export function salva() {
     selValore.value = 'scelta'
 }
 
-
 export const addUtente = (utente: Detenuto | Guardia) => {
     if (utente.tipo === 'detenuto') {
         fascicolo.detenuti.push(utente as Detenuto)

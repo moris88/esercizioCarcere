@@ -1,5 +1,5 @@
 import { Detenuto, Guardia, Type } from './types/global.d'
-import { cambio, detenuto, guardia, init } from './grafica'
+import { cambio, init, onChangeSwitchType } from './grafica'
 import { getUtenti, removeUtente, salva } from './database'
 import { decesso, evasione, numero } from './statistiche'
 
@@ -27,18 +27,23 @@ export const nG = window.document.getElementById('nG') as HTMLElement
 export const nD = window.document.getElementById('nD') as HTMLElement
 export const eD = window.document.getElementById('eD') as HTMLElement
 export const dD = window.document.getElementById('dD') as HTMLElement
-
+export const colonna = window.document.getElementById('colonna') as HTMLDivElement
 
 init()
 
 window.addEventListener('load', function () {
-    visualizzazione()
-    numero([],[])
-    evasione([])
-    decesso([])
+    const detenuti = getUtenti('detenuto') as Detenuto[]
+    const guardie = getUtenti('guardia') as Guardia[]
+    onChangeSwitchType()
+    numero(detenuti, guardie)
+    evasione(detenuti)
+    decesso(detenuti)
 })
 
 export function visualizzazione() {
+    console.log('Ho schiacciato il pulsante!')
+    onChangeSwitchType()
+    /**
     id.innerHTML = ``
     const tipo: Type = selModalita.value as Type
     const rigo = window.document.getElementById(
@@ -98,17 +103,17 @@ export function visualizzazione() {
         } else {
             rigo.innerHTML = `<tr>Non ci sono elementi da visualizzare</tr>`
         }
+     
     numero(detenuti,guardie)
     evasione(detenuti)
-    decesso(detenuti)
+    decesso(detenuti)*/
 }
 
 selValore.addEventListener('change', cambio)
 selModalita.addEventListener('change', visualizzazione)
 btn.addEventListener('click', salva)
-btnRemove.addEventListener('click', function(){
+btnRemove.addEventListener('click', function () {
     const pos = parseInt(id.value)
     const tipo = selValore.value as Type
     removeUtente(pos, tipo)
 })
-

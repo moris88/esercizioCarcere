@@ -3,7 +3,6 @@ import { Detenuto, Fascicolo, Guardia } from './types/global.d'
 export let nG = 0
 export let nD = 0
 
-
 let guardia1: Guardia = {
     id: 1,
     nome: 'Maurizio',
@@ -62,7 +61,5 @@ nD++
 
 export let fascicolo: Fascicolo = {
     guardie: [guardia1, guardia2],
-    detenuti: [detenuto1, detenuto2]
+    detenuti: [detenuto1, detenuto2],
 }
-
-

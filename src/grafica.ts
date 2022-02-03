@@ -1,5 +1,11 @@
-import { divContenitore1, divContenitore3, selModalita, selValore } from "./main"
-
+import {
+    colonna,
+    divContenitore1,
+    divContenitore3,
+    selModalita,
+    selValore,
+} from './main'
+import { Campo } from './types/global'
 
 export function cambio() {
     //valore.value === 'g' ? dati_guardia() : dati_detenuto()
@@ -13,13 +19,8 @@ export function cambio() {
 }
 
 export function onChangeSwitchType() {
-    if (selModalita.value === '1') {
-        guardia()
-    } else if (selModalita.value === '2') {
-        detenuto()
-    } else {
-        divContenitore1.innerHTML = ``
-    }
+    console.log(selModalita.value)
+    selModalita.value === 'guardia' ? guardia() : detenuto()    
 }
 
 const dati_guardia = () => {
@@ -73,42 +74,20 @@ const dati_detenuto = () => {
 }
 
 export const guardia = () => {
+    console.log('Guardia')
     divContenitore1.innerHTML = `
     <table class="table table-success table-striped">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Cognome</th>
-        <th scope="col">Età</th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Data assunzione</th>
-        <th scope="col">Descrizione</th>
-    </tr>
-    </thead>
-    <tbody id="rigo">
-
-    </tbody>
-</table>
-    `
-}
-
-export const detenuto = () => {
-    divContenitore1.innerHTML = `
-        <table class="table table-success table-striped">
         <thead>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Cognome</th>
-            <th scope="col">Età</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Data carcerazione</th>
-            <th scope="col">Data scarcerazione</th>
-            <th scope="col">Pena</th>
-            <th scope="col">Crimine</th>
-            <th scope="col">Evaso</th>
-            <th scope="col">Deceduto</th>
+            ${creazioneTabella([
+                'ID',
+                'Nome',
+                'Cognome',
+                'Età',
+                'Tipo',
+                'Data assunzione',
+                'Mansione',
+            ])}
         </tr>
         </thead>
         <tbody id="rigo"></tbody>
@@ -116,19 +95,50 @@ export const detenuto = () => {
     `
 }
 
+export const detenuto = () => {
+    console.log('Detenuto')
+    divContenitore1.innerHTML = `<table class="table table-success table-striped">
+            <thead>
+            <tr id="colonna">
+                ${creazioneTabella([
+                    'ID',
+                    'Nome',
+                    'Cognome',
+                    'Età',
+                    'Tipo',
+                    'Data carcerazione',
+                    'Data scarcerazione',
+                    'Pena',
+                    'Crimine',
+                    'Evaso',
+                    'Deceduto',
+                ])}
+                </tr>
+                </thead>
+                <tbody id="rigo"></tbody>
+            </table>
+        `
+}
+
 export const init = () => {
     guardia()
 }
 
-
-/* function creazioneTabella(listaCampi: Campo[]){
+function creazioneTabella(listaCampi: Campo[]) {
+    let output = ``
+    if(colonna !== null){
+        for (let i = 0; i < listaCampi.length; i++) {
+            output += `<th scope="col">${listaCampi[i]}</th>`
+        }
+    }
+    console.log(output)
+    return output
 }
 
-function inserisciTupla(listaRecord: Record[]){
+/*function inserisciTupla(listaRecord: Record[]){
 
 }
 
 function inserisci(testo: string){
 
 } */
-
