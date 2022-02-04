@@ -10,15 +10,15 @@ header{
     width: 100%;
 }
 
-.container1, .container2, .container3, .container4, .container5, .margin, h1{
+.divTabella, .divNuovoUtente, .divDatiAggiuntiviUtente, .container4, .divStatistiche, .margin, h1{
     text-align: center;
 }
 
-h4{
+h5{
     color: red;
 }
 
-.container5{
+.divStatistiche{
     border-color: red;
     border-style: dotted;
     border-width: 1px;
