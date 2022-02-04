@@ -1,5 +1,10 @@
 import { Detenuto, Guardia, Type } from './types/global.d'
-import { cambiaVisualizzazioneUtente, cambioVisualizzazioneTabella, init, inserisciTupla } from './grafica'
+import {
+    cambiaVisualizzazioneUtente,
+    cambioVisualizzazioneTabella,
+    init,
+    inserisciTupla,
+} from './grafica'
 import { getUtenti, removeUtente, salva } from './database'
 import { decesso, evasione, numero } from './statistiche'
 
@@ -24,7 +29,7 @@ export const divNuovoUtente = window.document.querySelector(
 export const btn = window.document.getElementById('salva') as HTMLButtonElement
 export const id = window.document.getElementById('id') as HTMLSelectElement
 export const btnRemove = window.document.getElementById(
-    'rimuovi'
+    'btnRemove'
 ) as HTMLButtonElement
 export const nG = window.document.getElementById('nG') as HTMLElement
 export const nD = window.document.getElementById('nD') as HTMLElement
@@ -35,10 +40,10 @@ window.addEventListener('load', function () {
     init(divTabella)
     const detenuti = getUtenti('detenuto') as Detenuto[]
     const guardie = getUtenti('guardia') as Guardia[]
-    cambioVisualizzazioneTabella('guardia',divTabella)
+    cambioVisualizzazioneTabella('guardia', divTabella)
     const rigo = window.document.getElementById('rigo') as HTMLElement
-    if(rigo !== null) inserisciTupla(guardie, rigo)
-    else console.log("Rigo null")
+    if (rigo !== null) inserisciTupla(guardie, rigo)
+    else console.log('Rigo null')
     numero(detenuti, guardie)
     evasione(detenuti)
     decesso(detenuti)
@@ -49,27 +54,26 @@ function visualizzazioneUtente() {
     cambiaVisualizzazioneUtente(tipo, divDatiAggiuntiviUtente)
 }
 
-function visualizzaTabellaUtente() {
+export function visualizzaTabellaUtente() {
     const tipo = scegliVisualizzaUtente.value as Type
     cambioVisualizzazioneTabella(tipo, divTabella)
     const rigo = window.document.getElementById('rigo') as HTMLElement
-    if(tipo==='detenuto'){
+    if (tipo === 'detenuto') {
         const detenuti = getUtenti(tipo) as Detenuto[]
-        if(rigo !== null) inserisciTupla(detenuti, rigo)
-        else console.log("Rigo null")
-    }else {
+        if (rigo !== null) inserisciTupla(detenuti, rigo)
+        else console.log('Rigo null')
+    } else {
         const guardie = getUtenti(tipo) as Guardia[]
-        if(rigo !== null) inserisciTupla(guardie, rigo)
-        else console.log("Rigo null")
+        if (rigo !== null) inserisciTupla(guardie, rigo)
+        else console.log('Rigo null')
     }
 }
 
 scegliTipoUtente.addEventListener('change', visualizzazioneUtente)
 scegliVisualizzaUtente.addEventListener('change', visualizzaTabellaUtente)
 btn.addEventListener('click', salva)
-btnRemove.addEventListener('click', function () {
+/* btnRemove.addEventListener('click', function () {
     const pos = parseInt(id.value)
     const tipo = scegliTipoUtente.value as Type
     removeUtente(pos, tipo)
-})
-
+}) */
