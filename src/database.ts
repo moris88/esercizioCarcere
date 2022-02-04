@@ -1,5 +1,5 @@
 import { pulizia } from './grafica'
-import { dD, eD, scegliTipoUtente, visualizzaTabellaUtente } from './main'
+import { scegliTipoUtente, visualizzaTabellaUtente } from './main'
 import { nG, nD, fascicolo } from './mappatura'
 import { decesso, evasione, numero } from './statistiche'
 import { Detenuto, Guardia, Type } from './types/global'
@@ -13,7 +13,7 @@ export function salva() {
     let nome = document.getElementById('nome') as HTMLInputElement
     let cognome = document.getElementById('cognome') as HTMLInputElement
     let eta = document.getElementById('eta') as HTMLInputElement
-    if (nome.value === '') {
+    if ((nome.value === '') || (cognome.value === '') || (tipo === 'scelta')) {
         alert('Attenzione! ci sono dei campi vuoti!')
     } else {
         if (tipo === 'guardia') {
