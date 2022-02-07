@@ -13,7 +13,7 @@ export function salva() {
     let nome = document.getElementById('nome') as HTMLInputElement
     let cognome = document.getElementById('cognome') as HTMLInputElement
     let eta = document.getElementById('eta') as HTMLInputElement
-    if ((nome.value === '') || (cognome.value === '') || (tipo === 'scelta')) {
+    if (nome.value === '' || cognome.value === '' ) {
         alert('Attenzione! ci sono dei campi vuoti!')
     } else {
         if (tipo === 'guardia') {
@@ -86,15 +86,10 @@ export const addUtente = (utente: Detenuto | Guardia) => {
 }
 
 export function removeUtente(pos: number, tipo: Type) {
-    console.log('Sono qui')
     if (tipo === 'detenuto') {
-        console.log('Sto per cancellare un detenuto')
         fascicolo.detenuti.splice(pos - 1, 1)
-        console.log('Ho cancellato un detenuto')
     } else {
-        console.log('Sto per cancellare duna guardia')
         fascicolo.guardie.splice(pos - 1, 1)
-        console.log('Ho cancellato una guardia')
     }
 }
 
