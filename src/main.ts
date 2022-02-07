@@ -1,4 +1,4 @@
-import { Detenuto, Guardia, Type } from './types/global.d'
+import { Detenuto, Guardia, Type } from './types/global'
 import {
     cambiaVisualizzazioneUtente,
     cambioVisualizzazioneTabella,
@@ -27,7 +27,6 @@ export const divNuovoUtente = window.document.querySelector(
     '.divNuovoUtente'
 ) as HTMLDivElement
 export const btn = window.document.getElementById('salva') as HTMLButtonElement
-export const id = window.document.getElementById('id') as HTMLSelectElement
 export const btnRemove = window.document.getElementById(
     'btnRemove'
 ) as HTMLButtonElement
@@ -35,6 +34,13 @@ export const nG = window.document.getElementById('nG') as HTMLElement
 export const nD = window.document.getElementById('nD') as HTMLElement
 export const eD = window.document.getElementById('eD') as HTMLElement
 export const dD = window.document.getElementById('dD') as HTMLElement
+export const divSalva = window.document.querySelector(
+    'container4'
+) as HTMLDivElement
+export const btnRimuovi = window.document.getElementById(
+    'btnRimuovi'
+) as HTMLButtonElement
+export const id = window.document.getElementById('id') as HTMLInputElement
 
 window.addEventListener('load', function () {
     init(divTabella)
@@ -56,24 +62,28 @@ function visualizzazioneUtente() {
 
 export function visualizzaTabellaUtente() {
     const tipo = scegliVisualizzaUtente.value as Type
+    const detenuti = getUtenti(tipo) as Detenuto[]
+    const guardie = getUtenti(tipo) as Guardia[]
     cambioVisualizzazioneTabella(tipo, divTabella)
     const rigo = window.document.getElementById('rigo') as HTMLElement
     if (tipo === 'detenuto') {
-        const detenuti = getUtenti(tipo) as Detenuto[]
         if (rigo !== null) inserisciTupla(detenuti, rigo)
         else console.log('Rigo null')
     } else {
-        const guardie = getUtenti(tipo) as Guardia[]
         if (rigo !== null) inserisciTupla(guardie, rigo)
         else console.log('Rigo null')
     }
+    numero(detenuti, guardie)
+    evasione(detenuti)
+    decesso(detenuti)
 }
 
 scegliTipoUtente.addEventListener('change', visualizzazioneUtente)
 scegliVisualizzaUtente.addEventListener('change', visualizzaTabellaUtente)
 btn.addEventListener('click', salva)
-/* btnRemove.addEventListener('click', function () {
+btnRimuovi.addEventListener('click', function () {
     const pos = parseInt(id.value)
-    const tipo = scegliTipoUtente.value as Type
+    const tipo = scegliVisualizzaUtente.value as Type
     removeUtente(pos, tipo)
-}) */
+    visualizzaTabellaUtente()
+})
