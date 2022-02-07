@@ -1,4 +1,5 @@
-import { divNuovoUtente } from './main'
+import { removeUtente } from './database'
+import { divNuovoUtente, divSalva } from './main'
 import { Campo, Detenuto, Guardia, Type } from './types/global'
 
 export function cambiaVisualizzazioneUtente(
@@ -49,52 +50,80 @@ const dati_Vuoti = (divElement: HTMLDivElement) => {
 
 const dati_guardia = (divElement: HTMLDivElement) => {
     divElement.innerHTML = `
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Data assunzione</th>
-            <th>Mansione</th>
-        </tr>
-        <tr>
-            <td><input type="date" aria-label="data"  class="form-control" id="data_assunzione"></td>
-            <td><input type="text"  class="form-control"  id="mansione"></td>
-        </tr>
-        </tbody>
-    </table>`
+    <form>
+      <div class="p-3">
+        <div class="row">
+          <div class="col">
+            <label for="data_assunzione" class="form-label">Data assunzione</label>
+          </div>
+          <div class="col">
+            <label class="form-check-label" for="mansione">Mansione</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+          <input type="date" aria-label="data"  class="form-control" id="data_assunzione">
+          </div>
+          <div class="col">
+          <input type="text"  class="form-control"  id="mansione">
+          </div>
+        </div>
+      </div>
+    </form>
+`
 }
 
 const dati_detenuto = (divElement: HTMLDivElement) => {
     divElement.innerHTML = `
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Data carcerazione</th>
-            <th>Data scarcerazione</th>
-            <th>Crimine commesso</th>
-        </tr>
-        <tr>
-            <td><input type="date" aria-label="data" class="form-control" id="data_carcerazione"></td>
-            <td><input type="date" aria-label="data" class="form-control" id="data_scarcerazione"></td>
-            <td><input type="text" aria-label="crimine"  class="form-control" id="crimine"></td>
-            <td>
-            <div class="form-check">
+
+    <form>
+    <div class="p-3">
+      <div class="row">
+        <div class="col">
+          <label for="data_carcerazione" class="form-label">Data carcerazione</label>
+        </div>
+        <div class="col">
+          <label for="data_scarcerazione" class="form-label">Data scarcerazione</label>
+        </div>
+        <div class="col">
+          <label class="form-check-label" for="crimine">Crimine commesso</label>
+        </div>
+        <div class="col">
+        <label class="form-check-label" class="form-control"  for="flexCheckDefault">
+        Evaso
+        </label>
+        </div>
+        <div class="col">
+        <label class="form-check-label" class="form-control" for="flexCheckDefault">
+        Deceduto
+        </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+        <input type="date" aria-label="data" class="form-control" id="data_carcerazione">
+        </div>
+        <div class="col">
+        <input type="date" aria-label="data" class="form-control" id="data_scarcerazione">
+        </div>
+        <div class="col">
+        <input type="text" aria-label="crimine"  class="form-control" id="crimine">
+        </div>
+        <div class="col">
+        <div class="form-check">
                 <input class="form-check-input" class="form-control"  type="checkbox" value="" id="checkEvaso">
-                <label class="form-check-label" class="form-control"  for="flexCheckDefault">
-                Evaso
-                </label>
+                
             </div>
-            </td>
-            <td>
-            <div class="form-check">
+        </div>
+        <div class="col">
+        <div class="form-check">
                 <input class="form-check-input" class="form-control" type="checkbox" value="" id="checkDeceduto">
-                <label class="form-check-label" class="form-control" for="flexCheckDefault">
-                Deceduto
-                </label>
+                
             </div>
-         </td>
-        </tr>
-        </tbody>
-    </table>`
+        </div>
+      </div>
+    </div>
+  </form>`
 }
 
 export const init = (divElement: HTMLDivElement) => {
@@ -143,8 +172,11 @@ export function inserisciTupla(
                 <td>${detenuto.crimine}</td>
                 <td>${detenuto.evaso}</td>
                 <td>${detenuto.deceduto}</td>
-                <td><button type="button" class="btn btn-danger" id="btnRemove" onClick="removeUtente(${detenuto.id, 'detenuto'})">X</button></td>
+                <td><button type="button" class="btn btn-outline-secondary" id="btnRemove" onClick="removeUtente(${
+                    detenuto.id
+                }, 'detenuto')">X</button></td>
             </tr>`
+            console.log(detenuto.id)
         } else {
             const guardia = utente as Guardia
             divElement.innerHTML += `
@@ -158,7 +190,9 @@ export function inserisciTupla(
                 guardia.data_assunzione.getMonth() + 1
             }/${guardia.data_assunzione.getFullYear()}</td>
                 <td>${guardia.descrizione}</td>
-                <td><button type="button" class="btn btn-danger" id="btnRemove" onClick="removeUtente(${guardia.id, 'guardia'})">X</button></td>
+                <td><button type="button" class="btn btn-outline-secondary" id="btnRemove" onClick="removeUtente(${
+                    guardia.id
+                }, 'guardia')">X</button></td>
             </tr>`
         }
     }
@@ -203,7 +237,7 @@ export function pulizia() {
           <div class="mb-3 form-check" id="divDatiAggiuntiviUtente">
         
           </div>
-          <div class="container4"><button type="button" id="salva" class="btn btn-outline-secondary">Salva</button></div>
+          <div class="container4"><button type="button" id="salva" class="btn btn-outline-secondary" disabled>Salva</button></div>
         </form>
         <hr>
                 <div class="divStatistiche">
