@@ -1,4 +1,4 @@
-import { Detenuto, Fascicolo, Guardia } from './types/global'
+import { Detenuto, Fascicolo, Guardia } from "./types/global"
 
 export let nG = 0
 export let nD = 0

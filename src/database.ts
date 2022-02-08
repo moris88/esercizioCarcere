@@ -1,8 +1,35 @@
-import { pulizia } from './grafica'
-import { scegliTipoUtente, visualizzaTabellaUtente } from './main'
-import { nG, nD, fascicolo } from './mappatura'
-import { decesso, evasione, numero } from './statistiche'
-import { Detenuto, Guardia, Type } from './types/global'
+import { Detenuto, Database, Guardia, Type } from './types/global'
+
+/*
+    aggiungere la statisticam il database non gestisce la grafica
+    implementare il namespace come in grafica
+    inserisci tutto qui in database (fascicolo e tutti i detenuti e guardie)
+*/
+
+const fascicolo: Database = {
+    guardie: [],
+    detenuti: [],
+}
+
+//namespace
+
+export function inizializzaDatabase() {
+    //inserisce la mappatura
+    const detenuto1: Detenuto = {
+        id: 1,
+        nome: 'Francesco',
+        cognome: 'Totti',
+        eta: 45,
+        tipo: 'detenuto',
+        data_carcerazione: new Date('2018/10/25'),
+        data_scarcerazione: new Date('2038/10/25'),
+        pena: 20,
+        crimine: 'truffa ai danni dello stato',
+        evaso: false,
+        deceduto: false,
+    }
+    fascicolo.detenuti.push(detenuto1)
+}
 
 export function salva() {
     const detenuto = getUtenti('detenuto') as Detenuto[]

@@ -28,7 +28,7 @@ export interface Detenuto {
     deceduto?: boolean
 }
 
-export interface Fascicolo {
+export interface Database {
     guardie: Guardia[]
     detenuti: Detenuto[]
 }
