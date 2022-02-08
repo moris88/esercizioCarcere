@@ -1,4 +1,3 @@
-import { removeUtente } from './database'
 import { divNuovoUtente, divSalva } from './main'
 import { Campo, Detenuto, Guardia, Type } from './types/global'
 
@@ -176,7 +175,6 @@ export function inserisciTupla(
                     detenuto.id
                 }, 'detenuto')">X</button></td>
             </tr>`
-            console.log(detenuto.id)
         } else {
             const guardia = utente as Guardia
             divElement.innerHTML += `
@@ -237,7 +235,7 @@ export function pulizia() {
           <div class="mb-3 form-check" id="divDatiAggiuntiviUtente">
         
           </div>
-          <div class="container4"><button type="button" id="salva" class="btn btn-outline-secondary" disabled>Salva</button></div>
+          <div class="container4"><button type="button" id="salva" class="btn btn-outline-secondary">Salva</button></div>
         </form>
         <hr>
                 <div class="divStatistiche">
