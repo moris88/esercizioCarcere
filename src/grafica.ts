@@ -1,4 +1,5 @@
-import { divNuovoUtente, divSalva } from './main'
+import { removeUtente } from './database'
+import { divNuovoUtente, divSalva, visualizzaTabellaUtente } from './main'
 import { Campo, Detenuto, Guardia, Type } from './types/global'
 
 export function cambiaVisualizzazioneUtente(
@@ -146,6 +147,13 @@ function creazioneTabella(listaCampi: Campo[]) {
     return output
 }
 
+export function listener(id: number){
+  console.log("sono nel listener click di guardia")
+  console.log(id)
+  removeUtente(id, 'guardia')
+  visualizzaTabellaUtente()
+}
+
 export function inserisciTupla(
     utenti: Detenuto[] | Guardia[],
     divElement: HTMLElement
@@ -171,9 +179,7 @@ export function inserisciTupla(
                 <td>${detenuto.crimine}</td>
                 <td>${detenuto.evaso}</td>
                 <td>${detenuto.deceduto}</td>
-                <td><button type="button" class="btn btn-outline-secondary" id="btnRemove" onClick="removeUtente(${
-                    detenuto.id
-                }, 'detenuto')">X</button></td>
+                <td><button type="button" class="btn btn-outline-secondary" id="btnRemove_${detenuto.id}">X</button></td>
             </tr>`
         } else {
             const guardia = utente as Guardia
@@ -188,10 +194,9 @@ export function inserisciTupla(
                 guardia.data_assunzione.getMonth() + 1
             }/${guardia.data_assunzione.getFullYear()}</td>
                 <td>${guardia.descrizione}</td>
-                <td><button type="button" class="btn btn-outline-secondary" id="btnRemove" onClick="removeUtente(${
-                    guardia.id
-                }, 'guardia')">X</button></td>
+                <td><button type="button" class="btn btn-outline-secondary" id="btnRemove_${guardia.id}">X</button></td>
             </tr>`
+            
         }
     }
 }
@@ -260,6 +265,8 @@ export function pulizia() {
                 </div>
     `
 }
+
+
 
 /*function inserisci(testo: string){
 

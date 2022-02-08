@@ -81,9 +81,3 @@ export function visualizzaTabellaUtente() {
 scegliTipoUtente.addEventListener('change', visualizzazioneUtente)
 scegliVisualizzaUtente.addEventListener('change', visualizzaTabellaUtente)
 btn.addEventListener('click', salva)
-btnRimuovi.addEventListener('click', function () {
-    const pos = parseInt(id.value)
-    const tipo = scegliVisualizzaUtente.value as Type
-    removeUtente(pos, tipo)
-    visualizzaTabellaUtente()
-})
