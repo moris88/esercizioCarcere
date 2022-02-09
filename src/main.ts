@@ -8,26 +8,15 @@ const scegliTipoUtente = window.document.getElementById(
 const divDatiAggiuntiviUtente = window.document.getElementById(
     'divDatiAggiuntiviUtente'
 ) as HTMLDivElement
-const divStatistiche = window.document.getElementById(
-    'divStatistiche'
-) as HTMLDivElement
 const scegliVisualizzaUtente = window.document.getElementById(
     'scegliVisualizzaUtente'
 ) as HTMLSelectElement
 const divTabella = window.document.querySelector(
     '.divTabella'
 ) as HTMLDivElement
-const divNuovoUtente = window.document.querySelector(
-    '.divNuovoUtente'
-) as HTMLDivElement
 const btnSalva = window.document.getElementById('salva') as HTMLButtonElement
 const elimnaID = window.document.getElementById('elimnaID') as HTMLSelectElement
 const rimuovi = window.document.getElementById('rimuovi') as HTMLButtonElement
-const numGED = window.document.getElementById('numG&D') as HTMLDivElement
-const numEvasi = window.document.getElementById('numEvasi') as HTMLDivElement
-const numDecessi = window.document.getElementById(
-    'numDecessi'
-) as HTMLDivElement
 
 window.addEventListener('load', function () {
     Database.inizializzaDatabase()
@@ -39,7 +28,7 @@ window.addEventListener('load', function () {
     if (rigo !== null) Grafica.inserisciTupla(guardie, rigo)
     else console.log('Rigo null')
     Grafica.inserisciID(guardie, elimnaID)
-    visualizzaStatistiche(guardie, detenuti)
+    Grafica.visualizzaStatistiche(Database.statistiche(detenuti, guardie))
 })
 
 function visualizzazioneUtente() {
@@ -47,7 +36,7 @@ function visualizzazioneUtente() {
     const detenuti = Database.getUtenti(tipo) as Detenuto[]
     const guardie = Database.getUtenti(tipo) as Guardia[]
     Grafica.cambiaVisualizzazioneUtente(tipo, divDatiAggiuntiviUtente)
-    visualizzaStatistiche(guardie, detenuti)
+    Grafica.visualizzaStatistiche(Database.statistiche(detenuti, guardie))
 }
 
 function visualizzaTabellaUtente() {
@@ -67,21 +56,64 @@ function visualizzaTabellaUtente() {
             Grafica.inserisciID(guardie, elimnaID)
         } else console.log('Rigo null')
     }
-    visualizzaStatistiche(guardie, detenuti)
+    Grafica.visualizzaStatistiche(Database.statistiche(detenuti, guardie))
 }
 
-function visualizzaStatistiche(guardie: Guardia[], detenuti: Detenuto[]){
-    const num = Database.numero(detenuti, guardie)
-    numGED.innerHTML = `
-        <h6>Le guardie sono: ${num.guardie}</h6>
-        <h6>I detenuti sono: ${num.detenuti}</h6>
-    `
-    numEvasi.innerHTML = `<h6>I detenuti evasi sono: ${
-        Database.evasione(detenuti).numEvaso
-    }</h6>`
-    numDecessi.innerHTML = `<h6>I detenuti deceduti in questa struttura sono: ${
-        Database.decesso(detenuti).numDecesso
-    }</h6>`
+function acquisisciDati(tipo: Type) {
+    const detenuto = Database.getUtenti('detenuto') as Detenuto[]
+    const guardia = Database.getUtenti('guardia') as Guardia[]
+    let nome = document.getElementById('nome') as HTMLInputElement
+    let cognome = document.getElementById('cognome') as HTMLInputElement
+    let eta = document.getElementById('eta') as HTMLInputElement
+    if (tipo === 'guardia') {
+        let data_assunzione = document.getElementById(
+            'data_assunzione'
+        ) as HTMLDataElement
+        let descrizione = document.getElementById(
+            'mansione'
+        ) as HTMLInputElement
+        let persona: Guardia = {
+            id: Database.getUltimoId('guardia'),
+            nome: nome.value,
+            cognome: cognome.value,
+            eta: Number(eta.value),
+            tipo: 'guardia',
+            data_assunzione: new Date(data_assunzione.value),
+            descrizione: descrizione.value,
+        }
+        return Database.addUtente(persona)
+    } else if (tipo === 'detenuto') {
+        let data_carcerazione = document.getElementById(
+            'data_carcerazione'
+        ) as HTMLDataElement
+        let data_c = new Date(data_carcerazione.value)
+        let data_scarcerazione = document.getElementById(
+            'data_scarcerazione'
+        ) as HTMLDataElement
+        let data_s = new Date(data_scarcerazione.value)
+        let crimine = document.getElementById('crimine') as HTMLInputElement
+        let evaso = document.getElementById(
+            'checkEvaso'
+        ) as HTMLInputElement
+        let deceduto = document.getElementById(
+            'checkDeceduto'
+        ) as HTMLInputElement
+        let persona: Detenuto = {
+            id: Database.getUltimoId('detenuto'),
+            nome: nome.value,
+            cognome: cognome.value,
+            eta: Number(eta.value),
+            tipo: 'detenuto',
+            data_carcerazione: new Date(data_carcerazione.value),
+            data_scarcerazione: new Date(data_scarcerazione.value),
+            pena:
+                Number(data_s.getFullYear()) - Number(data_c.getFullYear()),
+            crimine: crimine.value,
+            evaso: evaso.checked,
+            deceduto: deceduto.checked,
+        }
+        return Database.addUtente(persona)
+    }
 }
 
 scegliTipoUtente.addEventListener('change', visualizzazioneUtente)
@@ -99,9 +131,9 @@ rimuovi.addEventListener('click', function () {
 })
 btnSalva.addEventListener('click', function () {
     const tipo = scegliTipoUtente.value as Type
-    Grafica.acquisisciDati(tipo)
+    acquisisciDati(tipo)
     visualizzaTabellaUtente()
     Grafica.reset()
-    scegliTipoUtente.value ='scelta'
+    scegliTipoUtente.value = 'scelta'
     visualizzazioneUtente()
 })

@@ -1,20 +1,12 @@
-import { Detenuto, Fascicolo, Guardia, Type } from './types/global'
+import { Detenuto, Fascicolo, Guardia, Statistiche, Type } from './types/global'
 
-/*
-    aggiungere la statistica il database non gestisce la grafica
-    implementare il namespace come in grafica
-    inserisci tutto qui in database (fascicolo e tutti i detenuti e guardie)
-*/
 namespace Database {
     const fascicolo: Fascicolo = {
         guardie: [],
         detenuti: [],
     }
 
-    //namespace
-
     export function inizializzaDatabase() {
-        //inserisce la mappatura
         const detenuto1: Detenuto = {
             id: 1,
             nome: 'Francesco',
@@ -28,8 +20,6 @@ namespace Database {
             evaso: false,
             deceduto: false,
         }
-        fascicolo.detenuti.push(detenuto1)
-
         const detenuto2: Detenuto = {
             id: 2,
             nome: 'Giacomo',
@@ -44,8 +34,6 @@ namespace Database {
             deceduto: false,
         }
 
-        fascicolo.detenuti.push(detenuto2)
-
         const guardia1: Guardia = {
             id: 1,
             nome: 'Maurizio',
@@ -55,8 +43,6 @@ namespace Database {
             data_assunzione: new Date('2020/5/17'),
             descrizione: 'agente',
         }
-
-        fascicolo.guardie.push(guardia1)
 
         const guardia2: Guardia = {
             id: 2,
@@ -68,7 +54,8 @@ namespace Database {
             descrizione: 'agente',
         }
 
-        fascicolo.guardie.push(guardia2)
+        fascicolo.guardie.push(guardia1, guardia2)
+        fascicolo.detenuti.push(detenuto1, detenuto2)
     }
 
     /**
@@ -109,47 +96,36 @@ namespace Database {
         }
     }
 
+    export const getUltimoId = (tipo: Type) => {
+        if(tipo === 'detenuto')
+            return fascicolo.detenuti[fascicolo.detenuti.length-1].id + 1
+        else
+            return fascicolo.guardie[fascicolo.guardie.length-1].id + 1 
+    }
+
     /**
      *
      * @param detenuti
      * @param guardie
      * @returns
      */
-    export const numero = (detenuti: Detenuto[], guardie: Guardia[]) => {
-        return {
-            guardie: guardie.length,
-            detenuti: detenuti.length,
-        }
-    }
-
-    /**
-     *
-     * @param detenuti
-     * @returns
-     */
-    export const evasione = (detenuti: Detenuto[]) => {
+    export const statistiche = (detenuti: Detenuto[], guardie: Guardia[]): Statistiche => {
         let numEvaso = 0
+        let numDecesso = 0
         for (const detenuto of detenuti) {
             if (detenuto.evaso === true) {
                 numEvaso++
             }
-        }
-        return { numEvaso }
-    }
-
-    /**
-     *
-     * @param detenuti
-     * @returns
-     */
-    export const decesso = (detenuti: Detenuto[]) => {
-        let numDecesso = 0
-        for (const detenuto of detenuti) {
             if (detenuto.deceduto === true) {
                 numDecesso++
             }
         }
-        return { numDecesso }
+        return {
+            nGuardie: guardie.length,
+            nDetenuti: detenuti.length,
+            nDecessi: numDecesso,
+            nEvasi: numEvaso
+        }
     }
 }
 

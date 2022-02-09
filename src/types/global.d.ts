@@ -32,3 +32,10 @@ export interface Fascicolo {
     guardie: Guardia[]
     detenuti: Detenuto[]
 }
+
+interface Statistiche {
+    nGuardie?: number
+    nDetenuti?: number
+    nDecessi?: number
+    nEvasi?: number
+}

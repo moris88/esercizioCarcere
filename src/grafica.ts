@@ -1,9 +1,4 @@
-import Database from './database'
-import { Campo, Detenuto, Guardia, Type } from './types/global'
-
-/*
-  non chiamare il database qui
-*/
+import { Campo, Detenuto, Guardia, Statistiche, Type } from './types/global'
 
 namespace Grafica {
     /**
@@ -250,79 +245,34 @@ namespace Grafica {
         return secElement
     }
 
-    export function acquisisciDati(tipo: Type) {
-        const detenuto = Database.getUtenti('detenuto') as Detenuto[]
-        const guardia = Database.getUtenti('guardia') as Guardia[]
-        const num = Database.numero(detenuto, guardia)
-        let idG = num.guardie
-        let idD = num.detenuti
-        let nome = document.getElementById('nome') as HTMLInputElement
-        let cognome = document.getElementById('cognome') as HTMLInputElement
-        let eta = document.getElementById('eta') as HTMLInputElement
-            if (tipo === 'guardia') {
-                let data_assunzione = document.getElementById(
-                    'data_assunzione'
-                ) as HTMLDataElement
-                let descrizione = document.getElementById(
-                    'mansione'
-                ) as HTMLInputElement
-                idG++
-                let persona: Guardia = {
-                    id: idG,
-                    nome: nome.value,
-                    cognome: cognome.value,
-                    eta: Number(eta.value),
-                    tipo: 'guardia',
-                    data_assunzione: new Date(data_assunzione.value),
-                    descrizione: descrizione.value,
-                }
-                return Database.addUtente(persona)
-            } else if (tipo === 'detenuto') {
-                let data_carcerazione = document.getElementById(
-                    'data_carcerazione'
-                ) as HTMLDataElement
-                let data_c = new Date(data_carcerazione.value)
-                let data_scarcerazione = document.getElementById(
-                    'data_scarcerazione'
-                ) as HTMLDataElement
-                let data_s = new Date(data_scarcerazione.value)
-                let crimine = document.getElementById(
-                    'crimine'
-                ) as HTMLInputElement
-                let evaso = document.getElementById(
-                    'checkEvaso'
-                ) as HTMLInputElement
-                let deceduto = document.getElementById(
-                    'checkDeceduto'
-                ) as HTMLInputElement
-                idD++
-                let persona: Detenuto = {
-                    id: idD,
-                    nome: nome.value,
-                    cognome: cognome.value,
-                    eta: Number(eta.value),
-                    tipo: 'detenuto',
-                    data_carcerazione: new Date(data_carcerazione.value),
-                    data_scarcerazione: new Date(data_scarcerazione.value),
-                    pena:
-                        Number(data_s.getFullYear()) -
-                        Number(data_c.getFullYear()),
-                    crimine: crimine.value,
-                    evaso: evaso.checked,
-                    deceduto: deceduto.checked,
-                }
-                return Database.addUtente(persona)
-            }
-        }
-
-        export function reset(){
-          const nome = window.document.getElementById('inputNome') as HTMLDivElement
-          const cognome = window.document.getElementById('inputCognome') as HTMLDivElement
-          const eta = window.document.getElementById('inputEta') as HTMLDivElement
-          nome.innerHTML = `<input type="text" aria-label="Nome" class="form-control" id="nome">`
-          cognome.innerHTML = `<input type="text" aria-label="Cognome" class="form-control" id="cognome">`
-          eta.innerHTML = `<input type="number" class="form-control" id="eta">`
-        }
+    export function reset() {
+        const nome = window.document.getElementById(
+            'inputNome'
+        ) as HTMLDivElement
+        const cognome = window.document.getElementById(
+            'inputCognome'
+        ) as HTMLDivElement
+        const eta = window.document.getElementById('inputEta') as HTMLDivElement
+        nome.innerHTML = `<input type="text" aria-label="Nome" class="form-control" id="nome">`
+        cognome.innerHTML = `<input type="text" aria-label="Cognome" class="form-control" id="cognome">`
+        eta.innerHTML = `<input type="number" class="form-control" id="eta">`
     }
+
+    export function visualizzaStatistiche(statistiche: Statistiche) {
+
+      const divStatistiche = window.document.getElementById(
+          'divStatistiche'
+      ) as HTMLDivElement
+      divStatistiche.innerHTML = `
+          <h3>Statistiche</h3>
+          <div class="row justify-content-center">
+              <div class="col-3">Guardie: <b>${statistiche.nGuardie}</b></div>
+              <div class="col-3">Detenuti: <b>${statistiche.nDetenuti}</b></div>
+              <div class="col-3">Detenuti evasi: <b>${statistiche.nEvasi}</b></div>
+              <div class="col-3">Detenuti deceduti: <b>${statistiche.nDecessi}</b></div>
+          </div>`
+      //---------------------------------------
+  }
+}
 
 export default Grafica
