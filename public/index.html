@@ -43,12 +43,23 @@
                 <div class="divTabella">
                 
                 </div>
-                <input type="number" name="" id="id">
-                <button type="button" class="btn btn-danger" id="btnRimuovi">X</button>
+                <div class="row">
+                  <div class="col">
+                    <h6>Scegli l'ID da eliminare: </h6>
+                  </div>
+                  <div class="col">
+                    <select name="elimnaID"  class="form-control"  id="elimnaID">
+                      
+                    </select>
+                  </div>
+                  <div class="col">
+                    <button type="button" id="rimuovi" class="btn btn-danger">X</button>
+                  </div>
+                </div>
                 <hr>
                 <div class="divNuovoUtente">
                     <h1>Nuovo Utente</h1>
-                    <form>
+                    <form id="divNuovoUtente">
                       <div class="mb-3">
                         <label for="scelta" class="form-label">Chi vuoi inserire: </label>
                         <select name="tipo" id="scegliTipoUtente">
@@ -70,13 +81,13 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col">
+                          <div class="col" id="inputNome">
                             <input type="text" aria-label="Nome" class="form-control" id="nome">
                           </div>
-                          <div class="col">
+                          <div class="col" id="inputCognome">
                             <input type="text" aria-label="Cognome" class="form-control" id="cognome">
                           </div>
-                          <div class="col">
+                          <div class="col" id="inputEta">
                             <input type="number" class="form-control" id="eta">
                           </div>
                         </div>
@@ -90,22 +101,9 @@
                 <hr>
                 <div class="divStatistiche">
                   <div class="row">
-                    <div class="col">
-                      <h6>Le guardie sono: </h6>
-                      <h6>I detenuti sono: </h6>
-                    </div>
-                    <div class="col">
-                      <h5 id="nG"></h5>
-                      <h5 id="nD"></h5>
-                    </div>
-                    <div class="col">
-                      <h6>I detenuti evasi sono: </h6>
-                      <h6>I detenuti deceduti sono: </h6>
-                    </div>
-                    <div class="col">
-                      <h5 id="eD"></h5>
-                      <h5 id="dD"></h5>
-                    </div>
+                    <div class="col" id="numG&D"></div>
+                    <div class="col" id="numEvasi"></div>
+                    <div class="col" id="numDecessi"></div>
                   </div>
                 </div>
             </div>
@@ -113,7 +111,6 @@
 
         <!--script js-->
         <script src="bundle.js"></script>
-        
 
         <!--jquery js-->
         <script
