@@ -1,27 +1,21 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "moduleResolution": "node",
-      // "noEmit": true,
-      "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export (e.g import React from 'React')
-      // "isolatedModules": true,
-      "module": "commonjs",
-      "allowJs": true, // Process & infer types from .js files.
-      "checkJs": false,
-      "outDir": "temp",
-      "strict": true, // Enable strictest settings like strictNullChecks & noImplicitAny.
-      "esModuleInterop": true, // Import non-ES modules as default imports.
-      "forceConsistentCasingInFileNames": true,
-      "declaration": true,
-      "strictNullChecks": true,
-      "resolveJsonModule": true,
-      "sourceMap": true,
-      "baseUrl": ".",
-      "removeComments": true,
-      "paths": {
-
-      }
-    },
-    "exclude": ["node_modules"],
-    "include": ["src/**/*.ts"]
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
