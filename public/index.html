@@ -59,16 +59,16 @@
                 <hr>
                 <div class="divNuovoUtente">
                     <h1>Nuovo Utente</h1>
-                    <form id="divNuovoUtente">
-                      <div class="mb-3">
+                    <form id="divNuovoUtente" class="row justify-content-center">
+                      <div class="col-2 mb-3">
                         <label for="scelta" class="form-label">Chi vuoi inserire: </label>
-                        <select name="tipo" id="scegliTipoUtente">
-                            <option value="scelta"  class="form-control" selected>SELEZIONA...</option>
+                        <select name="tipo" class="form-control w-75" id="scegliTipoUtente">
+                            <option value="scelta"  selected>SELEZIONA...</option>
                             <option value="guardia">GUARDIA</option>
                             <option value="detenuto">DETENUTO</option>
                         </select>
                       </div>
-                      <div class="p-3">
+                      <div class="col-12 p-3">
                         <div class="row">
                           <div class="col">
                             <label for="name" class="form-label">Nome</label>
