@@ -99,43 +99,43 @@ namespace Grafica {
 
       <form>
         <div class="p-3">
-          <div class="row">
-            <div class="col">
+          <div class="row justify-content-center">
+            <div class="col-6">
               <label for="data_carcerazione" class="form-label">Data carcerazione</label>
             </div>
-            <div class="col">
+            <div class="col-6">
               <label for="data_scarcerazione" class="form-label">Data scarcerazione</label>
             </div>
-            <div class="col">
+            <div class="col-6">
               <label class="form-check-label" for="crimine">Crimine commesso</label>
             </div>
-            <div class="col">
+            <div class="col-6>
               <label class="form-check-label" class="form-control"  for="flexCheckDefault">
                Evaso
               </label>
             </div>
-            <div class="col">
+            <div class="col-6">
               <label class="form-check-label" class="form-control" for="flexCheckDefault">
                Deceduto
               </label>
             </div>
           </div>
-          <div class="row">
-            <div class="col">
+          <div class="row justify-content-center">
+            <div class="col-6">
               <input type="date" aria-label="data" class="form-control" id="data_carcerazione">
             </div>
-            <div class="col">
+            <div class="col-6">
              <input type="date" aria-label="data" class="form-control" id="data_scarcerazione">
             </div>
-            <div class="col">
+            <div class="col-6">
              <input type="text" aria-label="crimine"  class="form-control" id="crimine">
             </div>
-            <div class="col">
+            <div class="col-6">
               <div class="form-check">
                 <input class="form-check-input" class="form-control"  type="checkbox" value="" id="checkEvaso">
               </div>
             </div>
-            <div class="col">
+            <div class="col-6">
               <div class="form-check">
                 <input class="form-check-input" class="form-control" type="checkbox" value="" id="checkDeceduto">
               </div>
