@@ -78,7 +78,9 @@ const Aggiungi: React.FC<AggiungiProps> = (props) => {
                     newDetenuto.data_carcerazione = new Date(event.target.value)
                     break
                 case 'data_scarcerazione':
-                    newDetenuto.data_scarcerazione = new Date(event.target.value)
+                    newDetenuto.data_scarcerazione = new Date(
+                        event.target.value
+                    )
                     break
                 case 'pena':
                     newDetenuto.pena = parseInt(event.target.value)
@@ -136,7 +138,9 @@ const Aggiungi: React.FC<AggiungiProps> = (props) => {
                         id="descrizione"
                         placeholder="inserisci descrizione"
                         type="text"
-                        onChange={(event) => handleUtente(event, 'descrizione', tipo)}
+                        onChange={(event) =>
+                            handleUtente(event, 'descrizione', tipo)
+                        }
                     />
                 </>
             ) : (
@@ -175,7 +179,9 @@ const Aggiungi: React.FC<AggiungiProps> = (props) => {
                     <input
                         id="deceduto"
                         type="checkbox"
-                        onChange={(event) => handleUtente(event, 'deceduto', tipo)}
+                        onChange={(event) =>
+                            handleUtente(event, 'deceduto', tipo)
+                        }
                     />
                 </>
             )}
