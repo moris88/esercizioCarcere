@@ -8,12 +8,12 @@ export interface Utente {
     tipo: TypeUtente
 }
 
-export interface Guardia extends Utente{
+export interface Guardia extends Utente {
     data_assunzione?: Date
     descrizione?: string
 }
 
-export interface Detenuto extends Utente{
+export interface Detenuto extends Utente {
     data_carcerazione?: Date
     data_scarcerazione?: Date
     pena?: number
