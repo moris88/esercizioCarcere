@@ -6,28 +6,58 @@ import { Detenuto, Fascicolo, Guardia, TypeUtente } from './types/global'
 
 function App() {
     const [fascicolo, setFascicolo] = React.useState<Fascicolo>({
-        guardie: [],
-        detenuti: [],
+        guardie: [
+            {
+                id: 1,
+                nome: 'Maurizio',
+                cognome: 'Tolomeo',
+                eta: 33,
+                tipo: 'guardia',
+                data_assunzione: new Date('10/05/2021'),
+                descrizione: 'agente',
+            },
+        ],
+        detenuti: [
+            {
+                id: 1,
+                nome: 'Maurizio',
+                cognome: 'Tolomeo',
+                eta: 33,
+                tipo: 'detenuto',
+                data_carcerazione: new Date('10/05/2021'),
+                data_scarcerazione: new Date('10/05/2031'),
+                pena: 10,
+                evaso: true,
+                deceduto: false,
+            },
+        ],
     })
     const [tipo, setTipo] = React.useState<TypeUtente>('guardia')
-    const [record, setRecord] = React.useState<Guardia[] | Detenuto[]>([])
 
     const addUtente = (utente: Guardia | Detenuto, tipo: TypeUtente) => {
         const newFascicolo = fascicolo
         if (tipo === 'guardia') {
-            newFascicolo.guardie.push(utente as Guardia)
-            setRecord(newFascicolo.guardie)
+            const guardia = utente as Guardia
+            const id =
+                newFascicolo.guardie.length === 0
+                    ? 0
+                    : newFascicolo.guardie[newFascicolo.guardie.length - 1].id +
+                      1
+            guardia.id = id
+            newFascicolo.guardie.push(guardia)
+            setFascicolo(newFascicolo)
         } else {
-            newFascicolo.detenuti.push(utente as Detenuto)
-            setRecord(newFascicolo.detenuti)
+            const detenuto = utente as Detenuto
+            const id =
+                newFascicolo.detenuti.length === 0
+                    ? 0
+                    : newFascicolo.detenuti[newFascicolo.detenuti.length - 1]
+                          .id + 1
+            detenuto.id = id
+            newFascicolo.detenuti.push(detenuto)
+            setFascicolo(newFascicolo)
         }
-        setFascicolo(newFascicolo)
     }
-
-    React.useEffect(() => {
-        if (tipo === 'guardia') setRecord(fascicolo.guardie)
-        else setRecord(fascicolo.detenuti)
-    }, [tipo])
 
     return (
         <div>
@@ -44,17 +74,13 @@ function App() {
                 <option value="guardia">Guardie</option>
                 <option value="detenuto">Detenuti</option>
             </select>
-            <Visualizza records={record} type={tipo} />
+            <Visualizza records={fascicolo} type={tipo} />
             <Aggiungi
                 tipo={tipo}
-                onGuardia={function (guardia: Guardia): void {
-                    alert('onGuardia')
-                    console.log(guardia)
+                onGuardia={(guardia: Guardia): void => {
                     addUtente(guardia, guardia.tipo)
                 }}
-                onDetenuto={function (detenuto: Detenuto): void {
-                    alert('onDetenuto')
-                    console.log(detenuto)
+                onDetenuto={(detenuto: Detenuto): void => {
                     addUtente(detenuto, detenuto.tipo)
                 }}
             />
